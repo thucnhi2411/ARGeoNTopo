@@ -1,0 +1,593 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		223C284E20B5D21F00829BA3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223C284D20B5D21F00829BA3 /* AppDelegate.swift */; };
+		223C285020B5D21F00829BA3 /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 223C284F20B5D21F00829BA3 /* art.scnassets */; };
+		223C285220B5D21F00829BA3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223C285120B5D21F00829BA3 /* ViewController.swift */; };
+		223C285520B5D21F00829BA3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 223C285320B5D21F00829BA3 /* Main.storyboard */; };
+		223C285720B5D22200829BA3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 223C285620B5D22200829BA3 /* Assets.xcassets */; };
+		223C285A20B5D22200829BA3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 223C285820B5D22200829BA3 /* LaunchScreen.storyboard */; };
+		223C286520B5D22200829BA3 /* ARGeometryAndTopologyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223C286420B5D22200829BA3 /* ARGeometryAndTopologyTests.swift */; };
+		223C287020B5D22200829BA3 /* ARGeometryAndTopologyUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223C286F20B5D22200829BA3 /* ARGeometryAndTopologyUITests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		223C286120B5D22200829BA3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 223C284220B5D21F00829BA3 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 223C284920B5D21F00829BA3;
+			remoteInfo = ARGeometryAndTopology;
+		};
+		223C286C20B5D22200829BA3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 223C284220B5D21F00829BA3 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 223C284920B5D21F00829BA3;
+			remoteInfo = ARGeometryAndTopology;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		223C284A20B5D21F00829BA3 /* ARGeometryAndTopology.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ARGeometryAndTopology.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		223C284D20B5D21F00829BA3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		223C284F20B5D21F00829BA3 /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = art.scnassets; sourceTree = "<group>"; };
+		223C285120B5D21F00829BA3 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		223C285420B5D21F00829BA3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		223C285620B5D22200829BA3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		223C285920B5D22200829BA3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		223C285B20B5D22200829BA3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		223C286020B5D22200829BA3 /* ARGeometryAndTopologyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ARGeometryAndTopologyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		223C286420B5D22200829BA3 /* ARGeometryAndTopologyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARGeometryAndTopologyTests.swift; sourceTree = "<group>"; };
+		223C286620B5D22200829BA3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		223C286B20B5D22200829BA3 /* ARGeometryAndTopologyUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ARGeometryAndTopologyUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		223C286F20B5D22200829BA3 /* ARGeometryAndTopologyUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARGeometryAndTopologyUITests.swift; sourceTree = "<group>"; };
+		223C287120B5D22200829BA3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		223C284720B5D21F00829BA3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		223C285D20B5D22200829BA3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		223C286820B5D22200829BA3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		223C284120B5D21F00829BA3 = {
+			isa = PBXGroup;
+			children = (
+				223C284C20B5D21F00829BA3 /* ARGeometryAndTopology */,
+				223C286320B5D22200829BA3 /* ARGeometryAndTopologyTests */,
+				223C286E20B5D22200829BA3 /* ARGeometryAndTopologyUITests */,
+				223C284B20B5D21F00829BA3 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		223C284B20B5D21F00829BA3 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				223C284A20B5D21F00829BA3 /* ARGeometryAndTopology.app */,
+				223C286020B5D22200829BA3 /* ARGeometryAndTopologyTests.xctest */,
+				223C286B20B5D22200829BA3 /* ARGeometryAndTopologyUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		223C284C20B5D21F00829BA3 /* ARGeometryAndTopology */ = {
+			isa = PBXGroup;
+			children = (
+				223C284D20B5D21F00829BA3 /* AppDelegate.swift */,
+				223C284F20B5D21F00829BA3 /* art.scnassets */,
+				223C285120B5D21F00829BA3 /* ViewController.swift */,
+				223C285320B5D21F00829BA3 /* Main.storyboard */,
+				223C285620B5D22200829BA3 /* Assets.xcassets */,
+				223C285820B5D22200829BA3 /* LaunchScreen.storyboard */,
+				223C285B20B5D22200829BA3 /* Info.plist */,
+			);
+			path = ARGeometryAndTopology;
+			sourceTree = "<group>";
+		};
+		223C286320B5D22200829BA3 /* ARGeometryAndTopologyTests */ = {
+			isa = PBXGroup;
+			children = (
+				223C286420B5D22200829BA3 /* ARGeometryAndTopologyTests.swift */,
+				223C286620B5D22200829BA3 /* Info.plist */,
+			);
+			path = ARGeometryAndTopologyTests;
+			sourceTree = "<group>";
+		};
+		223C286E20B5D22200829BA3 /* ARGeometryAndTopologyUITests */ = {
+			isa = PBXGroup;
+			children = (
+				223C286F20B5D22200829BA3 /* ARGeometryAndTopologyUITests.swift */,
+				223C287120B5D22200829BA3 /* Info.plist */,
+			);
+			path = ARGeometryAndTopologyUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		223C284920B5D21F00829BA3 /* ARGeometryAndTopology */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 223C287420B5D22200829BA3 /* Build configuration list for PBXNativeTarget "ARGeometryAndTopology" */;
+			buildPhases = (
+				223C284620B5D21F00829BA3 /* Sources */,
+				223C284720B5D21F00829BA3 /* Frameworks */,
+				223C284820B5D21F00829BA3 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ARGeometryAndTopology;
+			productName = ARGeometryAndTopology;
+			productReference = 223C284A20B5D21F00829BA3 /* ARGeometryAndTopology.app */;
+			productType = "com.apple.product-type.application";
+		};
+		223C285F20B5D22200829BA3 /* ARGeometryAndTopologyTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 223C287720B5D22200829BA3 /* Build configuration list for PBXNativeTarget "ARGeometryAndTopologyTests" */;
+			buildPhases = (
+				223C285C20B5D22200829BA3 /* Sources */,
+				223C285D20B5D22200829BA3 /* Frameworks */,
+				223C285E20B5D22200829BA3 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				223C286220B5D22200829BA3 /* PBXTargetDependency */,
+			);
+			name = ARGeometryAndTopologyTests;
+			productName = ARGeometryAndTopologyTests;
+			productReference = 223C286020B5D22200829BA3 /* ARGeometryAndTopologyTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		223C286A20B5D22200829BA3 /* ARGeometryAndTopologyUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 223C287A20B5D22200829BA3 /* Build configuration list for PBXNativeTarget "ARGeometryAndTopologyUITests" */;
+			buildPhases = (
+				223C286720B5D22200829BA3 /* Sources */,
+				223C286820B5D22200829BA3 /* Frameworks */,
+				223C286920B5D22200829BA3 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				223C286D20B5D22200829BA3 /* PBXTargetDependency */,
+			);
+			name = ARGeometryAndTopologyUITests;
+			productName = ARGeometryAndTopologyUITests;
+			productReference = 223C286B20B5D22200829BA3 /* ARGeometryAndTopologyUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		223C284220B5D21F00829BA3 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0930;
+				LastUpgradeCheck = 0930;
+				ORGANIZATIONNAME = "Thuc Nhi Le";
+				TargetAttributes = {
+					223C284920B5D21F00829BA3 = {
+						CreatedOnToolsVersion = 9.3.1;
+					};
+					223C285F20B5D22200829BA3 = {
+						CreatedOnToolsVersion = 9.3.1;
+						TestTargetID = 223C284920B5D21F00829BA3;
+					};
+					223C286A20B5D22200829BA3 = {
+						CreatedOnToolsVersion = 9.3.1;
+						TestTargetID = 223C284920B5D21F00829BA3;
+					};
+				};
+			};
+			buildConfigurationList = 223C284520B5D21F00829BA3 /* Build configuration list for PBXProject "ARGeometryAndTopology" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 223C284120B5D21F00829BA3;
+			productRefGroup = 223C284B20B5D21F00829BA3 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				223C284920B5D21F00829BA3 /* ARGeometryAndTopology */,
+				223C285F20B5D22200829BA3 /* ARGeometryAndTopologyTests */,
+				223C286A20B5D22200829BA3 /* ARGeometryAndTopologyUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		223C284820B5D21F00829BA3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				223C285020B5D21F00829BA3 /* art.scnassets in Resources */,
+				223C285A20B5D22200829BA3 /* LaunchScreen.storyboard in Resources */,
+				223C285720B5D22200829BA3 /* Assets.xcassets in Resources */,
+				223C285520B5D21F00829BA3 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		223C285E20B5D22200829BA3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		223C286920B5D22200829BA3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		223C284620B5D21F00829BA3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				223C285220B5D21F00829BA3 /* ViewController.swift in Sources */,
+				223C284E20B5D21F00829BA3 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		223C285C20B5D22200829BA3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				223C286520B5D22200829BA3 /* ARGeometryAndTopologyTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		223C286720B5D22200829BA3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				223C287020B5D22200829BA3 /* ARGeometryAndTopologyUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		223C286220B5D22200829BA3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 223C284920B5D21F00829BA3 /* ARGeometryAndTopology */;
+			targetProxy = 223C286120B5D22200829BA3 /* PBXContainerItemProxy */;
+		};
+		223C286D20B5D22200829BA3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 223C284920B5D21F00829BA3 /* ARGeometryAndTopology */;
+			targetProxy = 223C286C20B5D22200829BA3 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		223C285320B5D21F00829BA3 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				223C285420B5D21F00829BA3 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		223C285820B5D22200829BA3 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				223C285920B5D22200829BA3 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		223C287220B5D22200829BA3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		223C287320B5D22200829BA3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		223C287520B5D22200829BA3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = JX8LDP3L4K;
+				INFOPLIST_FILE = ARGeometryAndTopology/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = tnnl.ARGeometryAndTopology;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		223C287620B5D22200829BA3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = JX8LDP3L4K;
+				INFOPLIST_FILE = ARGeometryAndTopology/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = tnnl.ARGeometryAndTopology;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		223C287820B5D22200829BA3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = JX8LDP3L4K;
+				INFOPLIST_FILE = ARGeometryAndTopologyTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = tnnl.ARGeometryAndTopologyTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ARGeometryAndTopology.app/ARGeometryAndTopology";
+			};
+			name = Debug;
+		};
+		223C287920B5D22200829BA3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = JX8LDP3L4K;
+				INFOPLIST_FILE = ARGeometryAndTopologyTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = tnnl.ARGeometryAndTopologyTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ARGeometryAndTopology.app/ARGeometryAndTopology";
+			};
+			name = Release;
+		};
+		223C287B20B5D22200829BA3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = JX8LDP3L4K;
+				INFOPLIST_FILE = ARGeometryAndTopologyUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = tnnl.ARGeometryAndTopologyUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = ARGeometryAndTopology;
+			};
+			name = Debug;
+		};
+		223C287C20B5D22200829BA3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = JX8LDP3L4K;
+				INFOPLIST_FILE = ARGeometryAndTopologyUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = tnnl.ARGeometryAndTopologyUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = ARGeometryAndTopology;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		223C284520B5D21F00829BA3 /* Build configuration list for PBXProject "ARGeometryAndTopology" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				223C287220B5D22200829BA3 /* Debug */,
+				223C287320B5D22200829BA3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		223C287420B5D22200829BA3 /* Build configuration list for PBXNativeTarget "ARGeometryAndTopology" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				223C287520B5D22200829BA3 /* Debug */,
+				223C287620B5D22200829BA3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		223C287720B5D22200829BA3 /* Build configuration list for PBXNativeTarget "ARGeometryAndTopologyTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				223C287820B5D22200829BA3 /* Debug */,
+				223C287920B5D22200829BA3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		223C287A20B5D22200829BA3 /* Build configuration list for PBXNativeTarget "ARGeometryAndTopologyUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				223C287B20B5D22200829BA3 /* Debug */,
+				223C287C20B5D22200829BA3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 223C284220B5D21F00829BA3 /* Project object */;
+}
