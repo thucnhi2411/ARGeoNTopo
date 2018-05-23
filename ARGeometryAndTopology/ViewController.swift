@@ -67,13 +67,15 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     @IBAction func addTorus(_ sender: Any) {
         // variables
         let r = CGFloat(0.1) //0.1
-        let pieces = 360
+        let pieces = 720
         let height = CGFloat(0.05) //0.05
         let length = CGFloat(0.05)
         
         // plane
         let torus = Torus(scene: sceneView, radius: r, pieceCount: pieces, h: height, l: length)
         torus.add()
+        let curve = Curve(scene: sceneView, radius: r, pieceCount: pieces, h: 0.001, l: length, thick: 0.001)
+        curve.add()
     }
     
     @IBAction func removeTorus(_ sender: UIButton) {
@@ -87,7 +89,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
             self.sceneView.scene.rootNode.childNodes.forEach { node in
                 let color = node.geometry?.firstMaterial?.diffuse.contents
                 if ( UIColor.white.isEqual(color)){
-                    node.geometry?.firstMaterial?.diffuse.contents = UIColor.yellow
+                    node.geometry?.firstMaterial?.diffuse.contents = UIColor.gray
                 } else {
                     node.geometry?.firstMaterial?.diffuse.contents = UIColor.white
                 }
