@@ -15,6 +15,7 @@
 		223C285A20B5D22200829BA3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 223C285820B5D22200829BA3 /* LaunchScreen.storyboard */; };
 		223C286520B5D22200829BA3 /* ARGeometryAndTopologyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223C286420B5D22200829BA3 /* ARGeometryAndTopologyTests.swift */; };
 		223C287020B5D22200829BA3 /* ARGeometryAndTopologyUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223C286F20B5D22200829BA3 /* ARGeometryAndTopologyUITests.swift */; };
+		223C287E20B5D69A00829BA3 /* Torus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223C287D20B5D69A00829BA3 /* Torus.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		223C286B20B5D22200829BA3 /* ARGeometryAndTopologyUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ARGeometryAndTopologyUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		223C286F20B5D22200829BA3 /* ARGeometryAndTopologyUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARGeometryAndTopologyUITests.swift; sourceTree = "<group>"; };
 		223C287120B5D22200829BA3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		223C287D20B5D69A00829BA3 /* Torus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Torus.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +108,7 @@
 				223C285620B5D22200829BA3 /* Assets.xcassets */,
 				223C285820B5D22200829BA3 /* LaunchScreen.storyboard */,
 				223C285B20B5D22200829BA3 /* Info.plist */,
+				223C287D20B5D69A00829BA3 /* Torus.swift */,
 			);
 			path = ARGeometryAndTopology;
 			sourceTree = "<group>";
@@ -260,6 +263,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				223C287E20B5D69A00829BA3 /* Torus.swift in Sources */,
 				223C285220B5D21F00829BA3 /* ViewController.swift in Sources */,
 				223C284E20B5D21F00829BA3 /* AppDelegate.swift in Sources */,
 			);

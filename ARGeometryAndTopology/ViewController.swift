@@ -12,6 +12,7 @@ import ARKit
 
 class ViewController: UIViewController, ARSCNViewDelegate {
 
+
     @IBOutlet var sceneView: ARSCNView!
     
     override func viewDidLoad() {
@@ -62,6 +63,38 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         return node
     }
 */
+    
+    @IBAction func addTorus(_ sender: Any) {
+        // variables
+        let r = CGFloat(0.1) //0.1
+        let pieces = 360
+        let height = CGFloat(0.05) //0.05
+        let length = CGFloat(0.05)
+        
+        // plane
+        let torus = Torus(scene: sceneView, radius: r, pieceCount: pieces, h: height, l: length)
+        torus.add()
+    }
+    
+    @IBAction func removeTorus(_ sender: UIButton) {
+        while (!self.sceneView.scene.rootNode.childNodes.isEmpty){
+            self.sceneView.scene.rootNode.childNodes[0].removeFromParentNode()
+        }
+    }
+    
+    @IBAction func recolorTorus(_ sender: UIButton) {
+        if (!self.sceneView.scene.rootNode.childNodes.isEmpty){
+            self.sceneView.scene.rootNode.childNodes.forEach { node in
+                let color = node.geometry?.firstMaterial?.diffuse.contents
+                if ( UIColor.white.isEqual(color)){
+                    node.geometry?.firstMaterial?.diffuse.contents = UIColor.yellow
+                } else {
+                    node.geometry?.firstMaterial?.diffuse.contents = UIColor.white
+                }
+            }
+        }
+    }
+    
     
     func session(_ session: ARSession, didFailWithError error: Error) {
         // Present an error message to the user
