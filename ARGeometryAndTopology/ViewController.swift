@@ -80,11 +80,10 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         
         curve.add()
 
-
-        
     }
     
     @IBAction func removeTorus(_ sender: UIButton) {
+        curve.removeAllElements()
         while (!self.sceneView.scene.rootNode.childNodes.isEmpty){
             self.sceneView.scene.rootNode.childNodes[0].removeFromParentNode()
         }
