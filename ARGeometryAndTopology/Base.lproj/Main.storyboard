@@ -63,11 +63,31 @@
                                     <action selector="recolorTorus:" destination="BV1-FR-VrT" eventType="touchUpInside" id="cD1-aR-dCh"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QOY-MT-8Yh">
+                                <rect key="frame" x="290" y="617" width="70" height="30"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="70" id="6Fz-Zv-Kyu"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="30" id="9GR-Pg-PLA"/>
+                                    <constraint firstAttribute="width" constant="70" id="JTN-sE-CdJ"/>
+                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="70" id="Wgd-Nt-YeY"/>
+                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="70" id="XWN-4s-M3G"/>
+                                    <constraint firstAttribute="height" constant="30" id="Yjr-yk-mwv"/>
+                                    <constraint firstAttribute="height" relation="lessThanOrEqual" constant="30" id="Z8V-t8-Ypg"/>
+                                    <constraint firstAttribute="height" relation="lessThanOrEqual" constant="30" id="hic-He-4Rh"/>
+                                </constraints>
+                                <state key="normal" title="Shorten"/>
+                                <connections>
+                                    <action selector="shortenCurve:" destination="BV1-FR-VrT" eventType="touchUpInside" id="YFh-ET-g4V"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="UuL-w9-eZZ" firstAttribute="top" secondItem="OFQ-a3-l9S" secondAttribute="top" id="CFp-W6-dVD"/>
+                            <constraint firstItem="2RN-0Q-xSv" firstAttribute="bottom" secondItem="QOY-MT-8Yh" secondAttribute="bottom" constant="20" id="Caq-Z7-o5W"/>
                             <constraint firstItem="2RN-0Q-xSv" firstAttribute="bottom" secondItem="dXm-xU-7yA" secondAttribute="bottom" constant="20" id="GFI-md-46i"/>
+                            <constraint firstItem="QOY-MT-8Yh" firstAttribute="leading" secondItem="yBU-p1-tsK" secondAttribute="trailing" constant="20" id="gSM-UQ-cOQ"/>
                             <constraint firstItem="UuL-w9-eZZ" firstAttribute="leading" secondItem="2RN-0Q-xSv" secondAttribute="leading" id="hZb-VW-tMg"/>
                             <constraint firstItem="UuL-w9-eZZ" firstAttribute="trailing" secondItem="2RN-0Q-xSv" secondAttribute="trailing" id="ni3-fc-6zo"/>
                             <constraint firstItem="yBU-p1-tsK" firstAttribute="leading" secondItem="dXm-xU-7yA" secondAttribute="trailing" constant="20" id="oaB-of-D1j"/>

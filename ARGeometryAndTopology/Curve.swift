@@ -12,90 +12,146 @@ import ARKit
 
 class Curve: NSObject {
 
-    var r = CGFloat()
-    var pieces: Int
-    var height = CGFloat()
-    var p = CGFloat.pi //3.14
-    var w = CGFloat() //width
-    var length = CGFloat()
-    var thickness = CGFloat()
+
     var s: ARSCNView
-    init(scene: ARSCNView, radius: CGFloat, pieceCount: Int, h: CGFloat, l: CGFloat, thick: CGFloat){
-        r = radius
-        pieces = pieceCount
-        height = h
-        length = l
-        w = (2*r*p)/CGFloat(pieces)
+    var points: [SCNNode]=[]
+    var line: [SCNNode] = []
+
+    
+    init(scene: ARSCNView){
         s = scene
-        thickness = thick
-        
     }
     
     func add(){
-        firstQuadrant()
-        secondQuadrant()
-        thirdQuadrant()
-        fourthQuadrant()
-    }
-    
-    func fourthQuadrant(){
-        var i = CGFloat(pieces/2)
-        i = i-1
+        let p0 = SCNNode()
+        p0.position = SCNVector3(0,0.02,0)
+        let p1 = SCNNode()
+        p1.position = SCNVector3(0.03,0.05,0)
+        let p2 = SCNNode()
+        p2.position = SCNVector3(0.06,0.03,0)
+        let p3 = SCNNode()
+        p3.position = SCNVector3(0.10,0,0)
+        let p4 = SCNNode()
+        p4.position = SCNVector3(0.13,0.06,0)
+        let p5 = SCNNode()
+        p5.position = SCNVector3(0.17,0.07,0)
+        let p6 = SCNNode()
+        p6.position = SCNVector3(0.19,0.04,0)
+        let p7 = SCNNode()
+        p7.position = SCNVector3(0.23,0.06,0)
         
-        for _ in 1...pieces/4 {
-            let x = CGFloat(sin(i*p/CGFloat(pieces)))
-            let y = CGFloat(0)
-            let z = CGFloat(cos(i*p/CGFloat(pieces)))
-            drawLine(x: (r+length/2)*x, y: y, z: (r+length/2)*z , trans: i*p/CGFloat(pieces))
-            i = i-2
+        
+        points.append(p0) //0
+        points.append(p1)
+        points.append(p2)
+        points.append(p3)
+        points.append(p4)
+        points.append(p5)
+        points.append(p6)
+        points.append(p7) //7
+        
+        for i in 0...6 {
+            let linenode = SCNNode.createLineNode(fromNode: points[i], toNode: points[i+1], color: UIColor.black)
+            s.scene.rootNode.addChildNode(linenode)
+            line.append(linenode)
         }
+        print(points)
+
     }
     
-    func firstQuadrant(){
-        var i = CGFloat(pieces/2)
-        i = i-1
-        for _ in 1...pieces/4 {
-            let x = CGFloat(sin(i*p/CGFloat(pieces)))
-            let y = CGFloat(0)
-            let z = CGFloat(cos(i*p/CGFloat(pieces)))
-            drawLine(x: (r+length/2)*x, y: y, z: -(r+length/2)*z , trans: -i*p/CGFloat(pieces))
-            i = i-2
+    func manipulateEven(){
+        for i in 0...5 {
+            if (i%2 == 0){
+                let nodeA = points[i].position
+                let nodeB = points[i+1].position
+                let nodeC = points[i+2].position
+                if (dist(loc1: nodeA,loc2: nodeC) <
+                    dist(loc1: nodeA,loc2: nodeB)+dist(loc1: nodeB, loc2: nodeC)) {
+                        points[i+1].position = calculateNewLoc(nodeA: nodeA,
+                                                            nodeB: nodeB,
+                                                            nodeC: nodeC)
+                        s.scene.rootNode.replaceChildNode(line[i], with: SCNNode.createLineNode(fromNode: points[i], toNode: points[i+1], color: UIColor.black))
+                        line[i] = SCNNode.createLineNode(fromNode: points[i], toNode: points[i+1], color: UIColor.black)
+                         s.scene.rootNode.replaceChildNode(line[i+1], with: SCNNode.createLineNode(fromNode: points[i+1], toNode: points[i+2], color: UIColor.black))
+                        line[i+1] = SCNNode.createLineNode(fromNode: points[i+1], toNode: points[i+2], color: UIColor.black)
+                }
+            }
         }
+        print(points)
     }
     
-    func thirdQuadrant(){
-        var i = CGFloat(pieces/2)
-        i = i-1
-        for _ in 1...pieces/4 {
-            let x = CGFloat(sin(i*p/CGFloat(pieces)))
-            let y = CGFloat(0)
-            let z = CGFloat(cos(i*p/CGFloat(pieces)))
-            drawLine(x: -(r+length/2)*x, y: y, z: (r+length/2)*z , trans: -i*p/CGFloat(pieces))
-            i = i-2
+    func manipulateOdd(){
+        for i in 1...5 {
+            if (i%2 != 0){
+                let nodeA = points[i].position
+                let nodeB = points[i+1].position
+                let nodeC = points[i+2].position
+                if (dist(loc1: nodeA,loc2: nodeC) <
+                    dist(loc1: nodeA,loc2: nodeB)+dist(loc1: nodeB, loc2: nodeC)) {
+                    
+                   
+                    points[i+1].position = calculateNewLoc(nodeA: nodeA, nodeB: nodeB, nodeC: nodeC)
+                    
+                    s.scene.rootNode.replaceChildNode(line[i], with: SCNNode.createLineNode(fromNode: points[i], toNode: points[i+1], color: UIColor.black))
+                    line[i] = SCNNode.createLineNode(fromNode: points[i], toNode: points[i+1], color: UIColor.black)
+                    s.scene.rootNode.replaceChildNode(line[i+1], with: SCNNode.createLineNode(fromNode: points[i+1], toNode: points[i+2], color: UIColor.black))
+                    line[i+1] = SCNNode.createLineNode(fromNode: points[i+1], toNode: points[i+2], color: UIColor.black)
+                }
+            }
         }
+        print(points)
+    }
+    //   B
+    //  / \    ====>
+    // A - C            A-B-C
+    
+    func calculateNewLoc(nodeA: SCNVector3, nodeB:SCNVector3, nodeC:SCNVector3) -> SCNVector3{
+
+        // write parametrized system for the line
+        let u = SCNVector3(nodeC.x-nodeA.x,
+                          nodeC.y-nodeA.y,
+                          nodeC.z-nodeA.z) //vector AC
+        // system:
+        // x = nodeA.x-u.x*t = xH
+        // y = nodeA.y-u.y*t = yH
+        // z = nodeA.z-u.z*t = zH
+        // BH*u = 0
+        // (xH-nodeB.x)*u.x + (yH-nodeB.y)*u.y + (zH-nodeB.z)*u.z = 0
+        var t = (nodeA.x-nodeB.x)*u.x + (nodeA.y-nodeB.y)*u.y + (nodeA.z-nodeB.z)*u.z
+        t = t/(pow(u.x,2)+pow(u.y,2)+pow(u.z,2))
+        let newX = CGFloat(nodeA.x-u.x*t)
+        let newY = CGFloat(nodeA.y-u.y*t)
+        let newZ = CGFloat(nodeA.z-u.z*t)
+        let newLoc = SCNVector3(newX,newY,newZ)
+        return newLoc
     }
     
-    func secondQuadrant(){
-        var i = CGFloat(pieces/2)
-        i = i-1
-        for _ in 1...pieces/4 {
-            let x = CGFloat(sin(i*p/CGFloat(pieces)))
-            let y = CGFloat(0)
-            let z = CGFloat(cos(i*p/CGFloat(pieces)))
-            drawLine(x: -(r+length/2)*x, y: y, z: -(r+length/2)*z , trans: i*p/CGFloat(pieces))
-            i = i-2
-        }
+    func dist(loc1: SCNVector3, loc2: SCNVector3)->CGFloat{
+        let x = pow(loc2.x-loc1.x,2)
+        let y = pow(loc2.y-loc1.y,2)
+        let z = pow(loc2.z-loc1.z,2)
+        return CGFloat(sqrt(x+y+z))
     }
-    
-    func drawLine(x:CGFloat,y:CGFloat,z:CGFloat,trans: CGFloat){
-        let node = SCNNode()
-        node.geometry = SCNBox(width: w, height: height, length: thickness, chamferRadius: 0)
-        node.geometry?.firstMaterial?.diffuse.contents = UIColor.gray
-        node.position = SCNVector3(x,y,z)
-        node.eulerAngles = SCNVector3(0,trans,0)
-        s.scene.rootNode.addChildNode(node)
-    }
-    
+
     
     
 }
+
+extension SCNNode {
+    static func createLineNode(fromNode: SCNNode, toNode: SCNNode, color: UIColor) -> SCNNode {
+        let line = lineFrom(vector: fromNode.position, toVector: toNode.position)
+        let lineNode = SCNNode(geometry: line)
+        let planeMaterial = SCNMaterial()
+        planeMaterial.diffuse.contents = color
+        line.materials = [planeMaterial]
+        return lineNode
+    }
+    
+    static func lineFrom(vector vector1: SCNVector3, toVector vector2: SCNVector3)-> SCNGeometry {
+        let indices: [Int32] = [0, 1]
+        let source = SCNGeometrySource(vertices: [vector1, vector2])
+        let element = SCNGeometryElement(indices: indices, primitiveType: .line)
+        return SCNGeometry(sources: [source], elements: [element])
+    }
+}
+

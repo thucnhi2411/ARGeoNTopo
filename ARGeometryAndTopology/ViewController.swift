@@ -11,9 +11,10 @@ import SceneKit
 import ARKit
 
 class ViewController: UIViewController, ARSCNViewDelegate {
-
+    
 
     @IBOutlet var sceneView: ARSCNView!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -63,7 +64,8 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         return node
     }
 */
-    
+    lazy var curve = Curve(scene: sceneView)
+    var odd = true
     @IBAction func addTorus(_ sender: Any) {
         // variables
         let r = CGFloat(0.1) //0.1
@@ -72,10 +74,14 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         let length = CGFloat(0.05)
         
         // plane
-        let torus = Torus(scene: sceneView, radius: r, pieceCount: pieces, h: height, l: length)
-        torus.add()
-        let curve = Curve(scene: sceneView, radius: r, pieceCount: pieces, h: 0.001, l: length, thick: 0.001)
+        //let torus = Torus(scene: sceneView, radius: r, pieceCount: pieces, h: height, l: length)
+        //torus.add()
+        
+        
         curve.add()
+
+
+        
     }
     
     @IBAction func removeTorus(_ sender: UIButton) {
@@ -97,6 +103,15 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         }
     }
     
+    @IBAction func shortenCurve(_ sender: UIButton) {
+        if (odd){
+            curve.manipulateOdd()
+        } else {
+            curve.manipulateEven()
+        }
+        odd = !odd
+
+    }
     
     func session(_ session: ARSession, didFailWithError error: Error) {
         // Present an error message to the user
