@@ -108,13 +108,13 @@
 				223C284D20B5D21F00829BA3 /* AppDelegate.swift */,
 				223C284F20B5D21F00829BA3 /* art.scnassets */,
 				223C285120B5D21F00829BA3 /* ViewController.swift */,
+				223C287D20B5D69A00829BA3 /* Torus.swift */,
+				223C287F20B5F8E500829BA3 /* Curve.swift */,
+				22997BC920B7D11E00C49861 /* WrappingLine.swift */,
 				223C285320B5D21F00829BA3 /* Main.storyboard */,
 				223C285620B5D22200829BA3 /* Assets.xcassets */,
 				223C285820B5D22200829BA3 /* LaunchScreen.storyboard */,
 				223C285B20B5D22200829BA3 /* Info.plist */,
-				223C287D20B5D69A00829BA3 /* Torus.swift */,
-				223C287F20B5F8E500829BA3 /* Curve.swift */,
-				22997BC920B7D11E00C49861 /* WrappingLine.swift */,
 			);
 			path = ARGeometryAndTopology;
 			sourceTree = "<group>";
