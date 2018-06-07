@@ -64,26 +64,27 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         return node
     }
 */
-    lazy var curve = Curve(scene: sceneView)
-    var odd = true
+    // variables
+    let r = CGFloat(0.1) //0.1
+    let pieces = 36
+    let height = CGFloat(0.1) //0.05
+    let length = CGFloat(0.002)
+    lazy var torus = TorusWithPoints(scene: sceneView, radius: r, pieceCount: pieces, h: height, l: length)
+    lazy var curve = Curve(scene: sceneView, radius: r)
     @IBAction func addTorus(_ sender: Any) {
-        // variables
-        let r = CGFloat(0.1) //0.1
-        let pieces = 720
-        let height = CGFloat(0.05) //0.05
-        let length = CGFloat(0.05)
+        
         
         // plane
-        //let torus = Torus(scene: sceneView, radius: r, pieceCount: pieces, h: height, l: length)
-        //torus.add()
+
+        torus.add()
         
         
-        curve.add()
+        //curve.add()
 
     }
     
     @IBAction func removeTorus(_ sender: UIButton) {
-        curve.removeAllElements()
+        torus.removeAllElements()
         while (!self.sceneView.scene.rootNode.childNodes.isEmpty){
             self.sceneView.scene.rootNode.childNodes[0].removeFromParentNode()
         }
@@ -103,14 +104,22 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     }
     
     @IBAction func shortenCurve(_ sender: UIButton) {
-        if (odd){
-            curve.manipulateOdd()
-        } else {
-            curve.manipulateEven()
-        }
-        odd = !odd
+        torus.shorten()
 
     }
+    
+//    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+//        guard let touch = touches.first else {return}
+//        let results = sceneView.hitTest(touch.location(in: sceneView), types: [ARHitTestResult.ResultType.featurePoint])
+//        guard let hitFeature = results.last else { return }
+//        let hitTransform = SCNMatrix4.init(hitFeature.worldTransform) // <- if higher than beta 1, use just this -> hitFeature.worldTransform
+//        let hitPosition = SCNVector3Make(hitTransform.m41,
+//                                         hitTransform.m42,
+//                                         hitTransform.m43)
+//        curve.createBall(hitPosition: hitPosition)
+//    }
+    
+
     
     func session(_ session: ARSession, didFailWithError error: Error) {
         // Present an error message to the user

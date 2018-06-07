@@ -16,10 +16,12 @@ class Curve: NSObject {
     var s: ARSCNView
     var points: [SCNNode]=[]
     var line: [SCNNode] = []
+    var r: CGFloat
 
     
-    init(scene: ARSCNView){
+    init(scene: ARSCNView, radius: CGFloat){
         s = scene
+        r = radius
     }
     
     func add(){
@@ -45,6 +47,24 @@ class Curve: NSObject {
         }
         print(points)
 
+    }
+    
+    func createBall(hitPosition : SCNVector3) {
+        let point0 = SCNNode()
+        point0.position = hitPosition
+        point0.geometry = SCNSphere(radius: 0.05)
+        point0.geometry?.firstMaterial?.diffuse.contents = UIColor.blue
+        points.append(point0)
+        s.scene.rootNode.addChildNode(point0)
+        //connectLine()
+    }
+    
+    func connectLine(){
+        if (points.count > 0){
+            let linenode = SCNNode.createLineNode(fromNode: points[points.count-1], toNode: points[points.count-2], color: UIColor.black)
+            s.scene.rootNode.addChildNode(linenode)
+            line.append(linenode)
+        }
     }
     
     func addManually(){
@@ -101,6 +121,7 @@ class Curve: NSObject {
     func manipulateEven(){
         for i in 0...(points.count-2) {
             if (i%2 == 0){
+             
                 if (i != points.count-2){
                      let nodeA = points[i].position
                      let nodeB = points[i+1].position
@@ -108,31 +129,35 @@ class Curve: NSObject {
                     
                     if (dist(loc1: nodeA,loc2: nodeC) <
                         dist(loc1: nodeA,loc2: nodeB)+dist(loc1: nodeB, loc2: nodeC)) {
-                        points[i+1].position = calculateNewLoc(nodeA: nodeA, nodeB: nodeB, nodeC: nodeC)
-                        var temp = SCNNode.createLineNode(fromNode: points[i], toNode: points[i+1], color: UIColor.black)
-                        s.scene.rootNode.replaceChildNode(line[i], with: temp)
-                        line[i] = temp
-                        temp = SCNNode.createLineNode(fromNode: points[i+1], toNode: points[i+2], color: UIColor.black)
-                        s.scene.rootNode.replaceChildNode(line[i+1], with: temp)
-                        line[i+1] = temp
+                        let newPos = calculateNewLoc(nodeA: nodeA, nodeB: nodeB, nodeC: nodeC)
+                        //if (dist(loc1: newPos, loc2: SCNVector3(0,0,0)) >= r){
+                            points[i+1].position = newPos
+                            var temp = SCNNode.createLineNode(fromNode: points[i], toNode: points[i+1], color: UIColor.black)
+                            s.scene.rootNode.replaceChildNode(line[i], with: temp)
+                            line[i] = temp
+                            temp = SCNNode.createLineNode(fromNode: points[i+1], toNode: points[i+2], color: UIColor.black)
+                            s.scene.rootNode.replaceChildNode(line[i+1], with: temp)
+                            line[i+1] = temp
+                        //}
+
                     }
                     
                 } else {
-                     let nodeA = points[i].position
-                     let nodeB = points[i+1].position
-                     let nodeC = points[0].position
-                    
-                    
-                    if (dist(loc1: nodeA,loc2: nodeC) <
-                        dist(loc1: nodeA,loc2: nodeB)+dist(loc1: nodeB, loc2: nodeC)) {
-                        points[i+1].position = calculateNewLoc(nodeA: nodeA, nodeB: nodeB, nodeC: nodeC)
-                        var temp = SCNNode.createLineNode(fromNode: points[i], toNode: points[i+1], color: UIColor.black)
-                        s.scene.rootNode.replaceChildNode(line[i], with: temp)
-                        line[i] = temp
-                        temp = SCNNode.createLineNode(fromNode: points[i+1], toNode: points[0], color: UIColor.black)
-                        s.scene.rootNode.replaceChildNode(line[i+1], with: temp)
-                        line[i+1] = temp
-                    }
+//                     let nodeA = points[i].position
+//                     let nodeB = points[i+1].position
+//                     let nodeC = points[0].position
+//
+//
+//                    if (dist(loc1: nodeA,loc2: nodeC) <
+//                        dist(loc1: nodeA,loc2: nodeB)+dist(loc1: nodeB, loc2: nodeC)) {
+//                        points[i+1].position = calculateNewLoc(nodeA: nodeA, nodeB: nodeB, nodeC: nodeC)
+//                        var temp = SCNNode.createLineNode(fromNode: points[i], toNode: points[i+1], color: UIColor.black)
+//                        s.scene.rootNode.replaceChildNode(line[i], with: temp)
+//                        line[i] = temp
+//                        temp = SCNNode.createLineNode(fromNode: points[i+1], toNode: points[0], color: UIColor.black)
+//                        s.scene.rootNode.replaceChildNode(line[i+1], with: temp)
+//                        line[i+1] = temp
+//                    }
                 }
 
             }
@@ -144,39 +169,43 @@ class Curve: NSObject {
     func manipulateOdd(){
         for i in 1...(points.count-2) {
             if (i%2 != 0){
-                
+               
                 if (i != points.count-2){
+                   
                     let nodeA = points[i].position
                     let nodeB = points[i+1].position
                     let nodeC = points[i+2].position
                     
                     if (dist(loc1: nodeA,loc2: nodeC) <
                         dist(loc1: nodeA,loc2: nodeB)+dist(loc1: nodeB, loc2: nodeC)) {
-                        points[i+1].position = calculateNewLoc(nodeA: nodeA, nodeB: nodeB, nodeC: nodeC)
-                        var temp = SCNNode.createLineNode(fromNode: points[i], toNode: points[i+1], color: UIColor.black)
-                        s.scene.rootNode.replaceChildNode(line[i], with: temp)
-                        line[i] = temp
-                        temp = SCNNode.createLineNode(fromNode: points[i+1], toNode: points[i+2], color: UIColor.black)
-                        s.scene.rootNode.replaceChildNode(line[i+1], with: temp)
-                        line[i+1] = temp
+                        let newPos = calculateNewLoc(nodeA: nodeA, nodeB: nodeB, nodeC: nodeC)
+                        //if (dist(loc1: newPos, loc2: SCNVector3(0,0,0)) >= r){
+                            points[i+1].position = newPos
+                            var temp = SCNNode.createLineNode(fromNode: points[i], toNode: points[i+1], color: UIColor.black)
+                            s.scene.rootNode.replaceChildNode(line[i], with: temp)
+                            line[i] = temp
+                            temp = SCNNode.createLineNode(fromNode: points[i+1], toNode: points[i+2], color: UIColor.black)
+                            s.scene.rootNode.replaceChildNode(line[i+1], with: temp)
+                            line[i+1] = temp
+                        //}
                     }
                     
                 } else {
-                    let nodeA = points[i].position
-                    let nodeB = points[i+1].position
-                    let nodeC = points[0].position
-                    
-                    
-                    if (dist(loc1: nodeA,loc2: nodeC) <
-                        dist(loc1: nodeA,loc2: nodeB)+dist(loc1: nodeB, loc2: nodeC)) {
-                        points[i+1].position = calculateNewLoc(nodeA: nodeA, nodeB: nodeB, nodeC: nodeC)
-                        var temp = SCNNode.createLineNode(fromNode: points[i], toNode: points[i+1], color: UIColor.black)
-                        s.scene.rootNode.replaceChildNode(line[i], with: temp)
-                        line[i] = temp
-                        temp = SCNNode.createLineNode(fromNode: points[i+1], toNode: points[0], color: UIColor.black)
-                        s.scene.rootNode.replaceChildNode(line[i+1], with: temp)
-                        line[i+1] = temp
-                    }
+//                    let nodeA = points[i].position
+//                    let nodeB = points[i+1].position
+//                    let nodeC = points[0].position
+//
+//
+//                    if (dist(loc1: nodeA,loc2: nodeC) <
+//                        dist(loc1: nodeA,loc2: nodeB)+dist(loc1: nodeB, loc2: nodeC)) {
+//                        points[i+1].position = calculateNewLoc(nodeA: nodeA, nodeB: nodeB, nodeC: nodeC)
+//                        var temp = SCNNode.createLineNode(fromNode: points[i], toNode: points[i+1], color: UIColor.black)
+//                        s.scene.rootNode.replaceChildNode(line[i], with: temp)
+//                        line[i] = temp
+//                        temp = SCNNode.createLineNode(fromNode: points[i+1], toNode: points[0], color: UIColor.black)
+//                        s.scene.rootNode.replaceChildNode(line[i+1], with: temp)
+//                        line[i+1] = temp
+//                    }
                 }
             }
         }
@@ -200,9 +229,14 @@ class Curve: NSObject {
         // (xH-nodeB.x)*u.x + (yH-nodeB.y)*u.y + (zH-nodeB.z)*u.z = 0
         var t = (nodeA.x-nodeB.x)*u.x + (nodeA.y-nodeB.y)*u.y + (nodeA.z-nodeB.z)*u.z
         t = t/(pow(u.x,2)+pow(u.y,2)+pow(u.z,2))
-        let newX = CGFloat(nodeA.x-u.x*t)
+        var newX = CGFloat(nodeA.x-u.x*t)
         let newY = CGFloat(nodeA.y-u.y*t)
-        let newZ = CGFloat(nodeA.z-u.z*t)
+        var newZ = CGFloat(nodeA.z-u.z*t)
+        // restriction to make sure points stay on the torus
+        if (pow(newX,2)+pow(newZ,2)<pow(r,2)){
+            newX = CGFloat(nodeB.x)
+            newZ = CGFloat(nodeB.z)
+        }
         let newLoc = SCNVector3(newX,newY,newZ)
         return newLoc
     }
