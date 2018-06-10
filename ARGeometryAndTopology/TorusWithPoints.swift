@@ -194,6 +194,7 @@ class TorusWithPoints: NSObject {
         transformSecond()
         transformThird()
         transformFourth()
+
         
     }
     // transform 1st quadrant

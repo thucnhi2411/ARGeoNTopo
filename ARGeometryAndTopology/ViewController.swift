@@ -65,12 +65,15 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     }
 */
     // variables
-    let r = CGFloat(0.1) //0.1
-    let pieces = 36
-    let height = CGFloat(0.1) //0.05
+    let r = CGFloat(0.005) //0.05
+    let pieces = 40
+    let height = CGFloat(0.5) //0.5
     let length = CGFloat(0.002)
-    lazy var torus = TorusWithPoints(scene: sceneView, radius: r, pieceCount: pieces, h: height, l: length)
+    lazy var torus = Torus(scene: sceneView, radius: r, pieceCount: pieces, h: height, l: length)
     lazy var curve = Curve(scene: sceneView, radius: r)
+    lazy var plane = PlaneDisplay(scene: sceneView, radius: r, h: height, pieceCount: pieces)
+    
+    
     @IBAction func addTorus(_ sender: Any) {
         
         
@@ -84,7 +87,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     }
     
     @IBAction func removeTorus(_ sender: UIButton) {
-        torus.removeAllElements()
+        //torus.removeAllElements()
         while (!self.sceneView.scene.rootNode.childNodes.isEmpty){
             self.sceneView.scene.rootNode.childNodes[0].removeFromParentNode()
         }
@@ -104,7 +107,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     }
     
     @IBAction func shortenCurve(_ sender: UIButton) {
-        torus.shorten()
+        //torus.shorten()
 
     }
     
