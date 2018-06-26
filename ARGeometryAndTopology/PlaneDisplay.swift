@@ -38,6 +38,8 @@ class PlaneDisplay: NSObject {
     func add(){
         addPlane()
         addUp()
+        print(second[0])
+        print(second[1])
     }
     
     func addUp(){
@@ -62,24 +64,26 @@ class PlaneDisplay: NSObject {
                 let node = SCNNode()
                 node.geometry = SCNBox(width: wPiece, height: hPiece, length: length, chamferRadius: 0)
                 node.geometry?.firstMaterial?.diffuse.contents = UIColor.white
-                node.position = SCNVector3(CGFloat(j)*wPiece+wPiece,CGFloat(i-1)*hPiece+hPiece,CGFloat(0) )
+                node.position = SCNVector3(-width/2+CGFloat(j)*wPiece+wPiece,height/2-CGFloat(i-1)*hPiece-hPiece,CGFloat(0) )
                 if (i<=pieces/4){
                     first.append(node)
                     node.geometry?.firstMaterial?.diffuse.contents = UIColor.yellow
                 } else if (i>pieces/4 && i<=pieces/2){
                     second.append(node)
-                    node.geometry?.firstMaterial?.diffuse.contents = UIColor.green
+                    node.geometry?.firstMaterial?.diffuse.contents = UIColor.white
                 } else if (i>pieces/2 && i<=3*pieces/4){
                     third.append(node)
                     node.geometry?.firstMaterial?.diffuse.contents = UIColor.blue
                 } else {
                     fourth.append(node)
-                    node.geometry?.firstMaterial?.diffuse.contents = UIColor.white
+                    node.geometry?.firstMaterial?.diffuse.contents = UIColor.green
                 }
                 
             }
         }
     }
+    
+
 
 
 

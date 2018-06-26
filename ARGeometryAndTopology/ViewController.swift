@@ -73,20 +73,21 @@ class ViewController: UIViewController, ARSCNViewDelegate {
 //    B                       C
     // How to make a torus: glue A->B, D->C to make a tube then glue AB->DC to make a torus
     // variables
-    let pieces = 20 // number of pieces for one tube => Total pieces: pieces^2
-    let width = CGFloat(0.5) //AD
+    let pieces = 64 // number of pieces for one tube => Total pieces: pieces^2
+    let width = CGFloat(0.25) //AD
     let height = CGFloat(0.05) //AB
     let length = CGFloat(0.002) // thickness of the torus
     lazy var torus = Torus(scene: sceneView,  pieceCount: pieces, w: width, h: height, l: length)
     lazy var plane = PlaneDisplay(scene: sceneView, pieceCount: pieces, w: width, h: height, l: length)
-    
+    lazy var torus2 = Torus2(scene: sceneView,  pieceCount: pieces, w: width, h: height, l: length)
     
     @IBAction func addTorus(_ sender: Any) {
         
         
         // plane
         //plane.add()
-        torus.add()
+        //torus.add()
+        torus2.add()
         
         
         //curve.add()

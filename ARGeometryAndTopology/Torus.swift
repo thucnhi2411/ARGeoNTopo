@@ -47,6 +47,8 @@ class Torus: NSObject {
         thirdQuadrant()
         fourthQuadrant()
         addUp()
+        print(second[0])
+        print(second[1])
     }
 
     func addUp(){
@@ -67,7 +69,7 @@ class Torus: NSObject {
     }
     
     
-    func fourthQuadrant(){
+    func secondQuadrant(){
         var i = CGFloat(1)
         for _ in 1...pieces/4 {
             for _ in 0...pieces-1 {
@@ -75,11 +77,11 @@ class Torus: NSObject {
                 let y = CGFloat(sin(i*p/CGFloat(pieces)))
                 let x = CGFloat(0)
                 let z = CGFloat(cos(i*p/CGFloat(pieces)))
-                node.geometry = SCNBox(width: width/CGFloat(pieces), height: height/CGFloat(pieces/4), length: length, chamferRadius: 0)
+                node.geometry = SCNBox(width: width/CGFloat(pieces), height: height/CGFloat(pieces), length: length, chamferRadius: 0)
                 node.geometry?.firstMaterial?.diffuse.contents = UIColor.white
                 node.position = SCNVector3(x,r*y,r*z )
                 node.eulerAngles = SCNVector3(-i*p/CGFloat(pieces),0,0)
-                fourth.append(node)
+                second.append(node)
             }
             i = i+2
         }
@@ -94,7 +96,7 @@ class Torus: NSObject {
                 let y = CGFloat(sin(i*p/CGFloat(pieces)))
                 let x = CGFloat(0)
                 let z = CGFloat(cos(i*p/CGFloat(pieces)))
-                node.geometry = SCNBox(width: width/CGFloat(pieces), height: height/CGFloat(pieces/4), length: length, chamferRadius: 0)
+                node.geometry = SCNBox(width: width/CGFloat(pieces), height: height/CGFloat(pieces), length: length, chamferRadius: 0)
                 node.geometry?.firstMaterial?.diffuse.contents = UIColor.blue
                 node.position = SCNVector3(x,-r*y,r*z)
                 node.eulerAngles = SCNVector3(i*p/CGFloat(pieces),0,0)
@@ -113,7 +115,7 @@ class Torus: NSObject {
                 let y = CGFloat(sin(i*p/CGFloat(pieces)))
                 let x = CGFloat(0)
                 let z = CGFloat(cos(i*p/CGFloat(pieces)))
-                node.geometry = SCNBox(width: width/CGFloat(pieces), height: height/CGFloat(pieces/4), length: length, chamferRadius: 0)
+                node.geometry = SCNBox(width: width/CGFloat(pieces), height: height/CGFloat(pieces), length: length, chamferRadius: 0)
                 node.geometry?.firstMaterial?.diffuse.contents = UIColor.yellow
                 node.position = SCNVector3(x,r*y,-r*z)
                 node.eulerAngles = SCNVector3(i*p/CGFloat(pieces),0,0)
@@ -125,7 +127,7 @@ class Torus: NSObject {
     
 
     
-    func secondQuadrant(){
+    func fourthQuadrant(){
         var i = CGFloat(1)
         for _ in 1...pieces/4 {
             for _ in 0...pieces-1 {
@@ -133,11 +135,11 @@ class Torus: NSObject {
                 let y = CGFloat(sin(i*p/CGFloat(pieces)))
                 let x = CGFloat(0)
                 let z = CGFloat(cos(i*p/CGFloat(pieces)))
-                node.geometry = SCNBox(width: width/CGFloat(pieces), height: height/CGFloat(pieces/4), length: length, chamferRadius: 0)
+                node.geometry = SCNBox(width: width/CGFloat(pieces), height: height/CGFloat(pieces), length: length, chamferRadius: 0)
                 node.geometry?.firstMaterial?.diffuse.contents = UIColor.green
                 node.position = SCNVector3(x,-r*y,-r*z)
                 node.eulerAngles = SCNVector3(-i*p/CGFloat(pieces),0,0)
-                second.append(node)
+                fourth.append(node)
             }
             i = i+2
         }
