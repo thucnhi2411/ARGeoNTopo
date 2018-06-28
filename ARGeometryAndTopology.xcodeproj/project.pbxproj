@@ -18,6 +18,7 @@
 		223C287020B5D22200829BA3 /* ARGeometryAndTopologyUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223C286F20B5D22200829BA3 /* ARGeometryAndTopologyUITests.swift */; };
 		223C287E20B5D69A00829BA3 /* Torus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223C287D20B5D69A00829BA3 /* Torus.swift */; };
 		223C288020B5F8E500829BA3 /* Curve.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223C287F20B5F8E500829BA3 /* Curve.swift */; };
+		227F926E20E554C100EFB33A /* Torus3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 227F926D20E554C100EFB33A /* Torus3.swift */; };
 		228A1DE920C99835009A4080 /* PlaneDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228A1DE820C99835009A4080 /* PlaneDisplay.swift */; };
 		22997BCA20B7D11E00C49861 /* WrappingLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22997BC920B7D11E00C49861 /* WrappingLine.swift */; };
 		22AFBE3220C1BF6E00653481 /* TorusWithPoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AFBE3120C1BF6D00653481 /* TorusWithPoints.swift */; };
@@ -59,6 +60,7 @@
 		223C287120B5D22200829BA3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		223C287D20B5D69A00829BA3 /* Torus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Torus.swift; sourceTree = "<group>"; };
 		223C287F20B5F8E500829BA3 /* Curve.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Curve.swift; sourceTree = "<group>"; };
+		227F926D20E554C100EFB33A /* Torus3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Torus3.swift; sourceTree = "<group>"; };
 		228A1DE820C99835009A4080 /* PlaneDisplay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaneDisplay.swift; sourceTree = "<group>"; };
 		22997BC920B7D11E00C49861 /* WrappingLine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WrappingLine.swift; sourceTree = "<group>"; };
 		22AFBE3120C1BF6D00653481 /* TorusWithPoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TorusWithPoints.swift; sourceTree = "<group>"; };
@@ -116,11 +118,12 @@
 				223C284D20B5D21F00829BA3 /* AppDelegate.swift */,
 				223C284F20B5D21F00829BA3 /* art.scnassets */,
 				223C285120B5D21F00829BA3 /* ViewController.swift */,
+				227F926D20E554C100EFB33A /* Torus3.swift */,
+				228A1DE820C99835009A4080 /* PlaneDisplay.swift */,
+				223C287F20B5F8E500829BA3 /* Curve.swift */,
 				223C287D20B5D69A00829BA3 /* Torus.swift */,
 				22E74E9320D0296100ADE6D9 /* Torus2.swift */,
 				2217067520CC86D400DC648A /* Tube.swift */,
-				228A1DE820C99835009A4080 /* PlaneDisplay.swift */,
-				223C287F20B5F8E500829BA3 /* Curve.swift */,
 				22AFBE3120C1BF6D00653481 /* TorusWithPoints.swift */,
 				22997BC920B7D11E00C49861 /* WrappingLine.swift */,
 				223C285320B5D21F00829BA3 /* Main.storyboard */,
@@ -286,6 +289,7 @@
 				223C285220B5D21F00829BA3 /* ViewController.swift in Sources */,
 				22E74E9420D0296100ADE6D9 /* Torus2.swift in Sources */,
 				22AFBE3220C1BF6E00653481 /* TorusWithPoints.swift in Sources */,
+				227F926E20E554C100EFB33A /* Torus3.swift in Sources */,
 				223C284E20B5D21F00829BA3 /* AppDelegate.swift in Sources */,
 				2217067620CC86D400DC648A /* Tube.swift in Sources */,
 				22997BCA20B7D11E00C49861 /* WrappingLine.swift in Sources */,
