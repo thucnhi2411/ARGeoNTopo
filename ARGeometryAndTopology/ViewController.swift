@@ -73,7 +73,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
 //    B                       C
     // How to make a torus: glue A->B, D->C to make a tube then glue AB->DC to make a torus
     // variables
-    let pieces = 36 // number of pieces for one tube => Total pieces: pieces^2
+    let pieces = 16 // number of pieces for one tube => Total pieces: pieces^2
     let width = CGFloat(0.25) //AD
     let height = CGFloat(0.1) //AB
     let length = CGFloat(0.002) // thickness of the torus
@@ -85,7 +85,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         
         
         // plane
-        plane.add()
+        //plane.add()
         //torus.add()
         torus3.add()
         

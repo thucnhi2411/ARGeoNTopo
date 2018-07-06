@@ -30,12 +30,14 @@ class Torus3: NSObject {
     var length = CGFloat()
     var s: ARSCNView
     var shapePoints: [[SCNNode]] = []
-    var curvePoints: [SCNNode] = []
-    var line: [SCNNode] = []
+    var curvePoints3D: [SCNNode] = []
+    var line = SCNNode()
+    var curvePointNode = SCNNode()
     var curve: Curve
     var odd = true
     var pointCnt: Int
     var plane: PlaneDisplay
+
     //
     init(scene: ARSCNView,  pieceCount: Int, w: CGFloat, h: CGFloat, l: CGFloat){
         rTube = h/(2*p) //AB: h
@@ -46,17 +48,15 @@ class Torus3: NSObject {
         height = h //AB
         s = scene
         curve = Curve(scene: s, radius: rTorus+rTube)
-        pointCnt = pieces*3
+        pointCnt = pieces
         plane = PlaneDisplay(scene: s, pieceCount: pieces, w: width, h: height, l: length)
     }
     
     func add(){
         plane.add()
         create()
-        addCurvePoint()
+        addCurvePoints()
         addLine()
-        curve.points = curvePoints
-        curve.line = line
     }
     
     func create(){
@@ -66,9 +66,10 @@ class Torus3: NSObject {
         for m in 1...pieces {
             var j = 1
             for n in 1...pieces {
-                let node = SCNNode()
-                let u = CGFloat(i)*p/CGFloat(pieces) // torus angle
-                let v = CGFloat(j)*p/CGFloat(pieces) // tube angle
+                //let node = SCNNode()
+                let node = plane.planePoints[m-1][n-1]
+                let u = positionToAngle(x: CGFloat(node.position.x), y: CGFloat(node.position.y))[0]
+                let v = positionToAngle(x: CGFloat(node.position.x), y: CGFloat(node.position.y))[1]
                 node.geometry = SCNSphere(radius: 0.001)
                 node.geometry?.firstMaterial?.diffuse.contents = UIColor.white
                 node.position = mapToTorus(torusA: u, tubeA: v)
@@ -90,7 +91,7 @@ class Torus3: NSObject {
     
     func mapToTorus(torusA: CGFloat, tubeA: CGFloat) -> SCNVector3{
         let x = (rTorus+rTube*cos(tubeA+p))*cos(torusA)
-        let y = -rTube*sin(tubeA+p)
+        let y = rTube*sin(tubeA+p)
         let z = (rTorus+rTube*cos(tubeA+p))*sin(torusA)
         return SCNVector3(x,y,z)
     }
@@ -99,9 +100,9 @@ class Torus3: NSObject {
     // angle[1] = tube angle
     func positionToAngle(x: CGFloat, y:CGFloat) -> [CGFloat] {
         var angle: [CGFloat] = []
-        let torusA = 2*p*(x+width/2)/rTorus
+        let torusA = (x+width/2)*2*p/width
         angle.append(torusA)
-        let tubeA = 2*p*(y-height/2)/rTube
+        let tubeA = (y-height/2)*2*p/height
         angle.append(tubeA)
         return angle
     }
@@ -148,61 +149,77 @@ class Torus3: NSObject {
         
     }
     
-    // add curvePoints
-    func addCurvePoint(){
-        for yP in 0...2 {
-            for xP in 0...(pointCnt-1) {
-                let p1 = SCNNode()
+    
+    // connect points to create curve
+    func addCurvePoints(){
+        var arr = plane.curvePoints3D
+        curvePointNode.name = "points"
+        for i in 0...arr.count-1 {
+            let p1 = SCNNode()
+            let node = arr[i]
+            if (node.name != "rightSide"){
+                let x = CGFloat(node.position.x)
+                let y = CGFloat(node.position.y)
+                p1.position = (mapToTorus(torusA: positionToAngle(x: x, y: y )[0], tubeA: positionToAngle(x: x, y: y)[1]))
+                curvePoints3D.append(p1)
                 p1.geometry = SCNSphere(radius: 0.0005)
-                if (yP == 0){
-                    p1.geometry?.firstMaterial?.diffuse.contents = UIColor.yellow
-                } else if (yP == 1) {
-                    p1.geometry?.firstMaterial?.diffuse.contents = UIColor.gray
-                } else {
-                    p1.geometry?.firstMaterial?.diffuse.contents = UIColor.blue
-                }
-                let x = CGFloat(xP)*rTorus/CGFloat(pointCnt)
-                //let y = 0
-                let y = CGFloat(yP)*0.005/3+0.005
-                p1.position = (mapToTorus(torusA: positionToAngle(x: x, y: CGFloat(y) )[0], tubeA: positionToAngle(x: x, y: CGFloat(y))[1]))
-                curvePoints.append(p1)
-                s.scene.rootNode.addChildNode(p1)
+                p1.geometry?.firstMaterial?.diffuse.contents = UIColor.blue
             }
         }
-        
-        
+        addToScreen()
     }
     
-    // connect shapePoints to create curve
+
     func addLine(){
+        line.name = "line"
         // add line to scene
-        for j in 0...(curvePoints.count-1) {
-            if (j != curvePoints.count-1){
-                let linenode = SCNNode.createLineNode(fromNode: curvePoints[j], toNode: curvePoints[j+1], color: UIColor.black)
-                line.append(linenode)
-                //                let node = shapePoints[j].parent
-                //                node?.addChildNode(linenode)
-                s.scene.rootNode.addChildNode(linenode)
+        for j in 0...(curvePoints3D.count-1) {
+            if (j != curvePoints3D.count-1){
+                let linenode = SCNNode.createLineNode(fromNode: curvePoints3D[j], toNode: curvePoints3D[j+1], color: UIColor.black)
+                line.addChildNode(linenode)
+                
+                
             } else {
-                //                let linenode = SCNNode.createLineNode(fromNode: shapePoints[j], toNode: shapePoints[0], color: UIColor.black)
-                //                line.append(linenode)
-                //                //let node = shapePoints[j].parent
-                //                //node?.addChildNode(linenode)
-                //                s.scene.rootNode.addChildNode(linenode)
+                let linenode = SCNNode.createLineNode(fromNode: curvePoints3D[j], toNode: curvePoints3D[0], color: UIColor.black)
+                line.addChildNode(linenode)
             }
             
         }
-        
+        s.scene.rootNode.addChildNode(line)
+    }
+    
+    func addToScreen(){
+        for i in 0...curvePoints3D.count-1{
+            curvePointNode.addChildNode(curvePoints3D[i])
+        }
+        s.scene.rootNode.addChildNode(curvePointNode)
+    }
+    
+    func indexOfLine() -> Int{
+        let arr = s.scene.rootNode.childNodes
+        return arr.index(of: line)!
+    }
+    
+    func indexOfPointsNode() -> Int{
+        let arr = s.scene.rootNode.childNodes
+        return arr.index(of: curvePointNode)!
+    }
+    
+    func shorten(){
+        plane.shorten()
+        s.scene.rootNode.childNodes[indexOfPointsNode()].removeFromParentNode()
+        s.scene.rootNode.childNodes[indexOfLine()].removeFromParentNode()
+        while (!line.childNodes.isEmpty){
+            line.childNodes[0].removeFromParentNode()
+        }
+        while (!curvePointNode.childNodes.isEmpty){
+            curvePointNode.childNodes[0].removeFromParentNode()
+        }
+        curvePoints3D.removeAll()
+        addCurvePoints()
+        addLine()
     }
 
-    func shorten(){
-        if (odd){
-            curve.manipulateOdd()
-        } else {
-            curve.manipulateEven()
-        }
-        odd = !odd
-    }
 }
 
 extension SCNNode {

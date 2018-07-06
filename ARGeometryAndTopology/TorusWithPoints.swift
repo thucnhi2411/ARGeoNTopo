@@ -42,7 +42,7 @@ class TorusWithPoints: NSObject {
         addLine()
         addToScreen()
         curve.points = points
-        curve.line = line
+
         
     }
     
