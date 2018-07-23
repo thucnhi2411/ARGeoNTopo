@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BV1-FR-VrT">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BV1-FR-VrT">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -10,10 +10,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--ARview-->
         <scene sceneID="tXr-a1-R10">
             <objects>
-                <viewController id="BV1-FR-VrT" customClass="ViewController" customModule="ARGeometryAndTopology" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="ARview" id="BV1-FR-VrT" customClass="ViewController" customModule="ARGeometryAndTopology" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="OFQ-a3-l9S">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -58,9 +58,10 @@
                                     <constraint firstAttribute="width" constant="70" id="ZGT-Xm-tPp"/>
                                     <constraint firstAttribute="height" constant="30" id="hFn-oe-Tih"/>
                                 </constraints>
-                                <state key="normal" title="Recolor"/>
+                                <state key="normal" title="Switch"/>
                                 <connections>
-                                    <action selector="recolorTorus:" destination="BV1-FR-VrT" eventType="touchUpInside" id="cD1-aR-dCh"/>
+                                    <action selector="changeView:" destination="BV1-FR-VrT" eventType="touchUpInside" id="nmf-ti-5Vf"/>
+                                    <segue destination="rJs-kx-n7X" kind="show" identifier="switchTo2D" id="6Me-an-GNP"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QOY-MT-8Yh">
@@ -81,12 +82,27 @@
                                     <action selector="shortenCurve:" destination="BV1-FR-VrT" eventType="touchUpInside" id="YFh-ET-g4V"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y69-Lp-rtv">
+                                <rect key="frame" x="20" y="567" width="70" height="30"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="70" id="J7U-33-JKr"/>
+                                    <constraint firstAttribute="height" constant="30" id="cL1-HU-AZO"/>
+                                </constraints>
+                                <state key="normal" title="Update"/>
+                                <connections>
+                                    <action selector="updateCurve:" destination="BV1-FR-VrT" eventType="touchUpInside" id="TEk-I5-SAj"/>
+                                    <segue destination="rJs-kx-n7X" kind="show" identifier="updateCurve" id="4qn-yN-ZUT"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="UuL-w9-eZZ" firstAttribute="top" secondItem="OFQ-a3-l9S" secondAttribute="top" id="CFp-W6-dVD"/>
                             <constraint firstItem="2RN-0Q-xSv" firstAttribute="bottom" secondItem="QOY-MT-8Yh" secondAttribute="bottom" constant="20" id="Caq-Z7-o5W"/>
                             <constraint firstItem="2RN-0Q-xSv" firstAttribute="bottom" secondItem="dXm-xU-7yA" secondAttribute="bottom" constant="20" id="GFI-md-46i"/>
+                            <constraint firstItem="y69-Lp-rtv" firstAttribute="leading" secondItem="2RN-0Q-xSv" secondAttribute="leading" constant="20" id="bcn-Xm-27E"/>
+                            <constraint firstItem="ao5-G4-m7q" firstAttribute="top" secondItem="y69-Lp-rtv" secondAttribute="bottom" constant="20" id="gQS-4Q-Vk9"/>
                             <constraint firstItem="QOY-MT-8Yh" firstAttribute="leading" secondItem="yBU-p1-tsK" secondAttribute="trailing" constant="20" id="gSM-UQ-cOQ"/>
                             <constraint firstItem="UuL-w9-eZZ" firstAttribute="leading" secondItem="2RN-0Q-xSv" secondAttribute="leading" id="hZb-VW-tMg"/>
                             <constraint firstItem="UuL-w9-eZZ" firstAttribute="trailing" secondItem="2RN-0Q-xSv" secondAttribute="trailing" id="ni3-fc-6zo"/>
@@ -107,5 +123,55 @@
             </objects>
             <point key="canvasLocation" x="125.59999999999999" y="132.68365817091455"/>
         </scene>
+        <!--2Dview-->
+        <scene sceneID="6ca-Do-0b8">
+            <objects>
+                <viewController title="2Dview" id="rJs-kx-n7X" customClass="TwoDViewController" customModule="ARGeometryAndTopology" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="qdV-Ih-PkJ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <skView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="19R-Tw-Tnt">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            </skView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9ou-1N-OvK">
+                                <rect key="frame" x="20" y="617" width="34" height="30"/>
+                                <state key="normal" title="Back"/>
+                                <connections>
+                                    <segue destination="BV1-FR-VrT" kind="show" identifier="switchToAR" id="6AP-bv-aCX"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tZh-rx-QP5">
+                                <rect key="frame" x="317" y="617" width="38" height="30"/>
+                                <state key="normal" title="Show"/>
+                                <connections>
+                                    <action selector="displayPlane:" destination="rJs-kx-n7X" eventType="touchUpInside" id="0GS-Hm-dag"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="19R-Tw-Tnt" firstAttribute="leading" secondItem="eVs-xf-IE5" secondAttribute="leading" id="A3H-18-xtv"/>
+                            <constraint firstItem="19R-Tw-Tnt" firstAttribute="top" secondItem="qdV-Ih-PkJ" secondAttribute="top" id="SlY-ch-vNH"/>
+                            <constraint firstItem="19R-Tw-Tnt" firstAttribute="trailing" secondItem="eVs-xf-IE5" secondAttribute="trailing" id="XFZ-hH-rfG"/>
+                            <constraint firstItem="eVs-xf-IE5" firstAttribute="bottom" secondItem="tZh-rx-QP5" secondAttribute="bottom" constant="20" id="fJQ-Wu-oa1"/>
+                            <constraint firstItem="eVs-xf-IE5" firstAttribute="bottom" secondItem="9ou-1N-OvK" secondAttribute="bottom" constant="20" id="fwP-mn-UND"/>
+                            <constraint firstItem="19R-Tw-Tnt" firstAttribute="bottom" secondItem="eVs-xf-IE5" secondAttribute="bottom" id="hEA-WT-Ump"/>
+                            <constraint firstItem="eVs-xf-IE5" firstAttribute="trailing" secondItem="tZh-rx-QP5" secondAttribute="trailing" constant="20" id="u6n-ya-w6I"/>
+                            <constraint firstItem="9ou-1N-OvK" firstAttribute="leading" secondItem="eVs-xf-IE5" secondAttribute="leading" constant="20" id="uoO-oy-4yt"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="eVs-xf-IE5"/>
+                    </view>
+                    <connections>
+                        <outlet property="skView" destination="19R-Tw-Tnt" id="BYj-Xp-bMx"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zVZ-sC-ChL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1118" y="133"/>
+        </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="4qn-yN-ZUT"/>
+    </inferredMetricsTieBreakers>
 </document>

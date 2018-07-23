@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2217067620CC86D400DC648A /* Tube.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2217067520CC86D400DC648A /* Tube.swift */; };
+		2224638C20EFF3050001F457 /* Torus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2224638B20EFF3050001F457 /* Torus.swift */; };
 		223C284E20B5D21F00829BA3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223C284D20B5D21F00829BA3 /* AppDelegate.swift */; };
 		223C285020B5D21F00829BA3 /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 223C284F20B5D21F00829BA3 /* art.scnassets */; };
 		223C285220B5D21F00829BA3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223C285120B5D21F00829BA3 /* ViewController.swift */; };
@@ -16,13 +16,11 @@
 		223C285A20B5D22200829BA3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 223C285820B5D22200829BA3 /* LaunchScreen.storyboard */; };
 		223C286520B5D22200829BA3 /* ARGeometryAndTopologyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223C286420B5D22200829BA3 /* ARGeometryAndTopologyTests.swift */; };
 		223C287020B5D22200829BA3 /* ARGeometryAndTopologyUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223C286F20B5D22200829BA3 /* ARGeometryAndTopologyUITests.swift */; };
-		223C287E20B5D69A00829BA3 /* Torus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223C287D20B5D69A00829BA3 /* Torus.swift */; };
 		223C288020B5F8E500829BA3 /* Curve.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223C287F20B5F8E500829BA3 /* Curve.swift */; };
-		227F926E20E554C100EFB33A /* Torus3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 227F926D20E554C100EFB33A /* Torus3.swift */; };
 		228A1DE920C99835009A4080 /* PlaneDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228A1DE820C99835009A4080 /* PlaneDisplay.swift */; };
-		22997BCA20B7D11E00C49861 /* WrappingLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22997BC920B7D11E00C49861 /* WrappingLine.swift */; };
-		22AFBE3220C1BF6E00653481 /* TorusWithPoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AFBE3120C1BF6D00653481 /* TorusWithPoints.swift */; };
-		22E74E9420D0296100ADE6D9 /* Torus2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E74E9320D0296100ADE6D9 /* Torus2.swift */; };
+		22BA977A2100F0020072BC47 /* VirtualPlane.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22BA97792100F0020072BC47 /* VirtualPlane.swift */; };
+		22BA97BA2101229C0072BC47 /* TwoDViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22BA97B92101229C0072BC47 /* TwoDViewController.swift */; };
+		22BA97BC21012F630072BC47 /* PlaneScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22BA97BB21012F630072BC47 /* PlaneScene.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,7 +41,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		2217067520CC86D400DC648A /* Tube.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tube.swift; sourceTree = "<group>"; };
+		2224638B20EFF3050001F457 /* Torus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Torus.swift; sourceTree = "<group>"; };
 		223C284A20B5D21F00829BA3 /* ARGeometryAndTopology.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ARGeometryAndTopology.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		223C284D20B5D21F00829BA3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		223C284F20B5D21F00829BA3 /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = art.scnassets; sourceTree = "<group>"; };
@@ -58,13 +56,11 @@
 		223C286B20B5D22200829BA3 /* ARGeometryAndTopologyUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ARGeometryAndTopologyUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		223C286F20B5D22200829BA3 /* ARGeometryAndTopologyUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARGeometryAndTopologyUITests.swift; sourceTree = "<group>"; };
 		223C287120B5D22200829BA3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		223C287D20B5D69A00829BA3 /* Torus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Torus.swift; sourceTree = "<group>"; };
 		223C287F20B5F8E500829BA3 /* Curve.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Curve.swift; sourceTree = "<group>"; };
-		227F926D20E554C100EFB33A /* Torus3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Torus3.swift; sourceTree = "<group>"; };
 		228A1DE820C99835009A4080 /* PlaneDisplay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaneDisplay.swift; sourceTree = "<group>"; };
-		22997BC920B7D11E00C49861 /* WrappingLine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WrappingLine.swift; sourceTree = "<group>"; };
-		22AFBE3120C1BF6D00653481 /* TorusWithPoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TorusWithPoints.swift; sourceTree = "<group>"; };
-		22E74E9320D0296100ADE6D9 /* Torus2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Torus2.swift; sourceTree = "<group>"; };
+		22BA97792100F0020072BC47 /* VirtualPlane.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VirtualPlane.swift; sourceTree = "<group>"; };
+		22BA97B92101229C0072BC47 /* TwoDViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwoDViewController.swift; sourceTree = "<group>"; };
+		22BA97BB21012F630072BC47 /* PlaneScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaneScene.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,14 +114,12 @@
 				223C284D20B5D21F00829BA3 /* AppDelegate.swift */,
 				223C284F20B5D21F00829BA3 /* art.scnassets */,
 				223C285120B5D21F00829BA3 /* ViewController.swift */,
-				227F926D20E554C100EFB33A /* Torus3.swift */,
+				22BA97B92101229C0072BC47 /* TwoDViewController.swift */,
 				228A1DE820C99835009A4080 /* PlaneDisplay.swift */,
+				22BA97BB21012F630072BC47 /* PlaneScene.swift */,
+				2224638B20EFF3050001F457 /* Torus.swift */,
 				223C287F20B5F8E500829BA3 /* Curve.swift */,
-				223C287D20B5D69A00829BA3 /* Torus.swift */,
-				22E74E9320D0296100ADE6D9 /* Torus2.swift */,
-				2217067520CC86D400DC648A /* Tube.swift */,
-				22AFBE3120C1BF6D00653481 /* TorusWithPoints.swift */,
-				22997BC920B7D11E00C49861 /* WrappingLine.swift */,
+				22BA97792100F0020072BC47 /* VirtualPlane.swift */,
 				223C285320B5D21F00829BA3 /* Main.storyboard */,
 				223C285620B5D22200829BA3 /* Assets.xcassets */,
 				223C285820B5D22200829BA3 /* LaunchScreen.storyboard */,
@@ -285,14 +279,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				228A1DE920C99835009A4080 /* PlaneDisplay.swift in Sources */,
-				223C287E20B5D69A00829BA3 /* Torus.swift in Sources */,
+				22BA97BC21012F630072BC47 /* PlaneScene.swift in Sources */,
 				223C285220B5D21F00829BA3 /* ViewController.swift in Sources */,
-				22E74E9420D0296100ADE6D9 /* Torus2.swift in Sources */,
-				22AFBE3220C1BF6E00653481 /* TorusWithPoints.swift in Sources */,
-				227F926E20E554C100EFB33A /* Torus3.swift in Sources */,
+				22BA977A2100F0020072BC47 /* VirtualPlane.swift in Sources */,
+				22BA97BA2101229C0072BC47 /* TwoDViewController.swift in Sources */,
+				2224638C20EFF3050001F457 /* Torus.swift in Sources */,
 				223C284E20B5D21F00829BA3 /* AppDelegate.swift in Sources */,
-				2217067620CC86D400DC648A /* Tube.swift in Sources */,
-				22997BCA20B7D11E00C49861 /* WrappingLine.swift in Sources */,
 				223C288020B5F8E500829BA3 /* Curve.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

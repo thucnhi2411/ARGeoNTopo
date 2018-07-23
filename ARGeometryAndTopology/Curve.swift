@@ -21,6 +21,8 @@ class Curve: NSObject {
     var width = CGFloat()
     var xLowerBound = CGFloat()
     var yLowerBound = CGFloat()
+    var horizontally = false
+    var vertically = false
     
     init(scene: ARSCNView, radius: CGFloat){
         s = scene
@@ -35,7 +37,6 @@ class Curve: NSObject {
         point0.geometry?.firstMaterial?.diffuse.contents = UIColor.blue
         points.append(point0)
         s.scene.rootNode.addChildNode(point0)
-        //connectLine()
     }
     
 
@@ -45,24 +46,19 @@ class Curve: NSObject {
     func manipulateEven(){
         for i in 0...(points.count-2) {
             if (i%2 == 0){
+                print(i)
                 if (i < points.count-2){
-                    if (points[i+1].name == "rightSide"){
-                        updateCurve(p1: points[i], p2: points[i+2], p3: points[i+3], index: i)
-                    } else if (points[i+2].name == "leftSide"){
-                        updateCurve(p1: points[i], p2: points[i+1], p3: points[i+3], index: i)
-                    } else {
-                        updateCurve(p1: points[i], p2: points[i+1], p3: points[i+2], index: i)
-                    }
+                    print("normal")
+                    updateCurve(p1: points[i], p2: points[i+1], p3: points[i+2])
                     
                 } else {
-                    if (points[i+1].name == "rightSide" || points[i+1].name == "leftSide"){
-                        updateCurve(p1: points[i], p2: points[0], p3: points[1], index: i)
-                    } else {
-                        updateCurve(p1: points[i], p2: points[i+1], p3: points[0], index: i)
-                    }
+                    print("exception")
+                    updateException(p1: points[i], p2: points[i+1], p3: points[0], p4: points[1])
+                    
                     
                 }
             }
+            resetName()
         }
 
     }
@@ -71,44 +67,86 @@ class Curve: NSObject {
     func manipulateOdd(){
         for i in 1...(points.count-2) {
             if (i%2 != 0){
+                print(i)
                 if (i < points.count-2){
-                    if (points[i+1].name == "rightSide"){
-                        updateCurve(p1: points[i], p2: points[i+2], p3: points[0], index: i)
-                    } else if (points[i+2].name == "leftSide"){
-                        updateCurve(p1: points[i], p2: points[i+1], p3: points[0], index: i)
-                    } else {
-                        updateCurve(p1: points[i], p2: points[i+1], p3: points[i+2], index: i)
-                    }
-                    
+                    print("normal")
+                    updateCurve(p1: points[i], p2: points[i+1], p3: points[i+2])
                 } else {
-                    if (points[i+1].name == "rightSide" || points[i+1].name == "leftSide"){
-                        updateCurve(p1: points[i], p2: points[0], p3: points[1], index: i)
-                    }  else {
-                        updateCurve(p1: points[i], p2: points[i+1], p3: points[0], index: i)
-                    }
+                    print("exception")
+                    updateException(p1: points[i], p2: points[i+1], p3: points[0], p4: points[1])
+                    
                     
                 }
             }
+            resetName()
         }
    
     }
     
-    func updateCurve(p1: SCNNode, p2: SCNNode, p3: SCNNode, index: Int){
+    func updateCurve(p1: SCNNode, p2: SCNNode, p3: SCNNode){
         let nodeA = p1.position
         let nodeB = p2.position
         let nodeC = p3.position
 
-        
-        
-        
         if (dist(loc1: nodeA,loc2: nodeC) <
             dist(loc1: nodeA,loc2: nodeB)+dist(loc1: nodeB, loc2: nodeC)) {
             let newPos = calculateNewLoc(nodeA: nodeA, nodeB: nodeB, nodeC: nodeC)
             p2.position = newPos
+
             if (edgePoints[p2] != nil){
                 let temp = edgePoints[p2]
-                temp?.position = SCNVector3((temp?.position.x)!, newPos.y, newPos.z)
+                if (horizontally){
+                    temp?.position = SCNVector3((temp?.position.x)!, newPos.y, newPos.z)
+                }
+                if (vertically){
+                    temp?.position = SCNVector3(newPos.x, (temp?.position.y)!, newPos.z)
+                }
+                
             }
+
+        }
+    }
+    
+    func updateException(p1: SCNNode, p2: SCNNode, p3: SCNNode, p4: SCNNode){
+        let nodeA = p1.position
+        let nodeC = p3.position
+        let nodeD = p4.position
+        let temp = SCNNode()
+        if (horizontally){
+            temp.position = SCNVector3(CGFloat(nodeA.x)-width,CGFloat(nodeA.y), CGFloat(nodeA.z))
+        }
+        if (vertically){
+            temp.position = SCNVector3(CGFloat(nodeA.x),CGFloat(nodeA.y)-height, CGFloat(nodeA.z))
+        }
+        if (dist(loc1: temp.position,loc2: nodeD) <
+            dist(loc1: temp.position,loc2: nodeC)+dist(loc1: nodeC, loc2: nodeD)) {
+            let newPos = calculateNewLoc(nodeA: temp.position, nodeB: nodeC, nodeC: nodeD)
+            p3.position = newPos
+
+            if (horizontally){
+                if (newPos.x != Float(xLowerBound)){
+                    points.remove(at: points.count-1)
+                } else {
+                    p2.position = SCNVector3(CGFloat(nodeC.x)+width, CGFloat(newPos.y), CGFloat(newPos.z))
+                }
+            }
+            if (vertically){
+                if (newPos.y != Float(yLowerBound)){
+                    points.remove(at: points.count-1)
+                    print("remove")
+                } else {
+                    print("change pos")
+                    p2.position = SCNVector3(CGFloat(newPos.x), CGFloat(nodeC.y)+height, CGFloat(newPos.z))
+                }
+            }
+            
+
+        }
+    }
+    
+    func resetName(){
+        for i in 0...points.count-1{
+            points[i].name = nil
         }
     }
     

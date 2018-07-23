@@ -30,6 +30,8 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         
         // Set the scene to the view
         sceneView.scene = scene
+        torus.initShape()
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -37,6 +39,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         
         // Create a session configuration
         let configuration = ARWorldTrackingConfiguration()
+
 
         // Run the view's session
         sceneView.session.run(configuration)
@@ -74,63 +77,109 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     // How to make a torus: glue A->B, D->C to make a tube then glue AB->DC to make a torus
     // variables
     let pieces = 16 // number of pieces for one tube => Total pieces: pieces^2
-    let width = CGFloat(0.25) //AD
+    let width = CGFloat(0.1) //AD
     let height = CGFloat(0.1) //AB
+    let xLowerBound = -CGFloat(0.1)/2
+    let yLowerBound = CGFloat(0.1)/2
     let length = CGFloat(0.002) // thickness of the torus
-    lazy var torus = Torus(scene: sceneView,  pieceCount: pieces, w: width, h: height, l: length)
     lazy var plane = PlaneDisplay(scene: sceneView, pieceCount: pieces, w: width, h: height, l: length)
-    lazy var torus3 = Torus3(scene: sceneView,  pieceCount: pieces, w: width, h: height, l: length)
+    lazy var torus = Torus(scene: sceneView,  pieceCount: pieces, w: width, h: height, l: length)
+    var points: [SCNNode] = []
+    var multipleCurve = false
+    var planeCurrentCurves = SCNNode()
+    var torusCurrentCurves = SCNNode()
     
+
     @IBAction func addTorus(_ sender: Any) {
+        print(multipleCurve)
+        if (multipleCurve == false){
+            torus.plane.curvePoints = points
+            torus.add()
+
+        } else {
+            sceneView.scene.rootNode.addChildNode(planeCurrentCurves)
+            sceneView.scene.rootNode.addChildNode(torusCurrentCurves)
+            torus.plane.curvePoints = points
+            torus.add()
+        }
         
+    }
+    @IBAction func updateCurve(_ sender: UIButton) {
+        let planeMaterial = SCNMaterial()
+        planeMaterial.diffuse.contents = UIColor.gray
+        recolor(node: torus.plane.curvePointNode)
+        recolor(node: torus.plane.line)
+        recolor(node: torus.curvePointNode)
+        recolor(node: torus.line)
+        planeCurrentCurves.addChildNode(torus.plane.curvePointNode)
+        planeCurrentCurves.addChildNode(torus.plane.line)
+        torusCurrentCurves.addChildNode(torus.curvePointNode)
+        torusCurrentCurves.addChildNode(torus.line)
         
-        // plane
-        //plane.add()
-        //torus.add()
-        torus3.add()
-        
-        
-        //curve.add()
 
     }
     
     @IBAction func removeTorus(_ sender: UIButton) {
-        //torus.removeAllElements()
         while (!self.sceneView.scene.rootNode.childNodes.isEmpty){
             self.sceneView.scene.rootNode.childNodes[0].removeFromParentNode()
         }
     }
     
-    @IBAction func recolorTorus(_ sender: UIButton) {
-        if (!self.sceneView.scene.rootNode.childNodes.isEmpty){
-            self.sceneView.scene.rootNode.childNodes.forEach { node in
-                let color = node.geometry?.firstMaterial?.diffuse.contents
-                if ( UIColor.white.isEqual(color)){
-                    node.geometry?.firstMaterial?.diffuse.contents = UIColor.gray
-                } else {
-                    node.geometry?.firstMaterial?.diffuse.contents = UIColor.white
-                }
-            }
+    @IBAction func changeView(_ sender: UIButton) {
+        //performSegue(withIdentifier: "Switch", sender: UIButton())
+    }
+
+    
+    func recolor(node: SCNNode){
+        let arr = node.childNodes
+        for i in 0...arr.count-1 {
+            arr[i].geometry?.firstMaterial?.diffuse.contents = UIColor.gray
         }
     }
     
     @IBAction func shortenCurve(_ sender: UIButton) {
-        torus3.shorten()
+        torus.shorten()
 
     }
-    
+//
 //    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
 //        guard let touch = touches.first else {return}
 //        let results = sceneView.hitTest(touch.location(in: sceneView), types: [ARHitTestResult.ResultType.featurePoint])
-//        guard let hitFeature = results.last else { return }
+//        guard let hitFeature = results.first else { return }
 //        let hitTransform = SCNMatrix4.init(hitFeature.worldTransform) // <- if higher than beta 1, use just this -> hitFeature.worldTransform
 //        let hitPosition = SCNVector3Make(hitTransform.m41,
 //                                         hitTransform.m42,
 //                                         hitTransform.m43)
-//        curve.createBall(hitPosition: hitPosition)
+//        torus.touchForPoints(pos: hitPosition)
+//        print("Touched")
 //    }
     
 
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "switchTo2D" {
+            if let twoDView = segue.destination as? TwoDViewController {
+                twoDView.width = width
+                twoDView.height = height
+                twoDView.xLowerBound = xLowerBound
+                twoDView.yLowerBound = yLowerBound
+                multipleCurve = false
+                twoDView.multipleCurve = multipleCurve
+            }
+        }
+        if segue.identifier == "updateCurve"{
+            if let twoDView = segue.destination as? TwoDViewController {
+                twoDView.width = width
+                twoDView.height = height
+                twoDView.xLowerBound = xLowerBound
+                twoDView.yLowerBound = yLowerBound
+                twoDView.torusCurrentCurves = torusCurrentCurves
+                twoDView.planeCurrentCurves = planeCurrentCurves
+                multipleCurve = true
+                twoDView.multipleCurve = multipleCurve
+            }
+        }
+
+    }
     
     func session(_ session: ARSession, didFailWithError error: Error) {
         // Present an error message to the user
@@ -147,3 +196,5 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         
     }
 }
+
+
