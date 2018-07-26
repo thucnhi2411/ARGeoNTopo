@@ -11,16 +11,16 @@ import SceneKit
 import UIKit
 
 class PlaneScene: SKScene {
-    var width3D = CGFloat()
-    var height3D = CGFloat()
-    var widthPlane = CGFloat()
-    var heightPlane = CGFloat()
-    var plane = SKShapeNode(rectOf: CGSize(width: 0, height: 0))
-    var points: [SCNNode] = []
-    var oldPoints: [SCNNode] = []
-    var xLowerBound = CGFloat()
-    var yLowerBound = CGFloat()
+    var width3D = CGFloat()         // width of the plane in AR
+    var height3D = CGFloat()        // height of the plane in AR
+    var widthPlane = CGFloat()      // width of the plane in 2D
+    var heightPlane = CGFloat()     // height of the plane in 2D
+    var plane = SKShapeNode(rectOf: CGSize(width: 0, height: 0))    // plane in 2D view
+    var points: [SCNNode] = []      // array of points created
+    var xLowerBound = CGFloat()     // xLowerBound of plane in AR
+    var yLowerBound = CGFloat()     // yLowerBound of plane in AR
     
+    // Add plane to the 2D screen
     override func didMove(to view: SKView) {
         backgroundColor = UIColor.white
         if (frame.width < frame.height){
@@ -35,6 +35,7 @@ class PlaneScene: SKScene {
         displayScene()
     }
     
+    // Display the plane
     func displayScene(){
         plane.position = CGPoint(x: frame.midX, y: frame.midY)
         plane.zPosition = 0
@@ -42,6 +43,7 @@ class PlaneScene: SKScene {
         self.addChild(plane)
     }
     
+    // Create point at the position touched
     func addPoint(location: CGPoint){
         let point = SKShapeNode(rectOf: CGSize(width: widthPlane/20, height: heightPlane/20))
         point.position = location
@@ -59,6 +61,7 @@ class PlaneScene: SKScene {
 
     }
     
+    // Map from 2D to AR
     func mapTo3D(loc: CGPoint)-> SCNVector3{
         let x = ((loc.x-frame.midX)/widthPlane)*width3D
         let y = ((loc.y-frame.midY)/heightPlane)*height3D

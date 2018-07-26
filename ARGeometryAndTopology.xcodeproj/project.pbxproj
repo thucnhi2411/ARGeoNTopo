@@ -18,7 +18,6 @@
 		223C287020B5D22200829BA3 /* ARGeometryAndTopologyUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223C286F20B5D22200829BA3 /* ARGeometryAndTopologyUITests.swift */; };
 		223C288020B5F8E500829BA3 /* Curve.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223C287F20B5F8E500829BA3 /* Curve.swift */; };
 		228A1DE920C99835009A4080 /* PlaneDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228A1DE820C99835009A4080 /* PlaneDisplay.swift */; };
-		22BA977A2100F0020072BC47 /* VirtualPlane.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22BA97792100F0020072BC47 /* VirtualPlane.swift */; };
 		22BA97BA2101229C0072BC47 /* TwoDViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22BA97B92101229C0072BC47 /* TwoDViewController.swift */; };
 		22BA97BC21012F630072BC47 /* PlaneScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22BA97BB21012F630072BC47 /* PlaneScene.swift */; };
 /* End PBXBuildFile section */
@@ -58,7 +57,6 @@
 		223C287120B5D22200829BA3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		223C287F20B5F8E500829BA3 /* Curve.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Curve.swift; sourceTree = "<group>"; };
 		228A1DE820C99835009A4080 /* PlaneDisplay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaneDisplay.swift; sourceTree = "<group>"; };
-		22BA97792100F0020072BC47 /* VirtualPlane.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VirtualPlane.swift; sourceTree = "<group>"; };
 		22BA97B92101229C0072BC47 /* TwoDViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwoDViewController.swift; sourceTree = "<group>"; };
 		22BA97BB21012F630072BC47 /* PlaneScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaneScene.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -119,7 +117,6 @@
 				22BA97BB21012F630072BC47 /* PlaneScene.swift */,
 				2224638B20EFF3050001F457 /* Torus.swift */,
 				223C287F20B5F8E500829BA3 /* Curve.swift */,
-				22BA97792100F0020072BC47 /* VirtualPlane.swift */,
 				223C285320B5D21F00829BA3 /* Main.storyboard */,
 				223C285620B5D22200829BA3 /* Assets.xcassets */,
 				223C285820B5D22200829BA3 /* LaunchScreen.storyboard */,
@@ -281,7 +278,6 @@
 				228A1DE920C99835009A4080 /* PlaneDisplay.swift in Sources */,
 				22BA97BC21012F630072BC47 /* PlaneScene.swift in Sources */,
 				223C285220B5D21F00829BA3 /* ViewController.swift in Sources */,
-				22BA977A2100F0020072BC47 /* VirtualPlane.swift in Sources */,
 				22BA97BA2101229C0072BC47 /* TwoDViewController.swift in Sources */,
 				2224638C20EFF3050001F457 /* Torus.swift in Sources */,
 				223C284E20B5D21F00829BA3 /* AppDelegate.swift in Sources */,

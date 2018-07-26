@@ -12,19 +12,19 @@ import SceneKit
 
 class TwoDViewController: UIViewController, SKViewDelegate {
 
-
-    @IBOutlet weak var skView: SKView!
-    var width  = CGFloat()
-    var height = CGFloat()
-    var xLowerBound = CGFloat()
-    var yLowerBound = CGFloat()
-    var scene = PlaneScene(size: CGSize(width: 0, height: 0))
-    var planeCurrentCurves = SCNNode()
-    var torusCurrentCurves = SCNNode()
-    var multipleCurve = false
+    // 2D view to adding points by touching the screen
+    @IBOutlet weak var skView: SKView!          // view
+    var width  = CGFloat()                      // width of AR plane
+    var height = CGFloat()                      // height of AR plane
+    var xLowerBound = CGFloat()                 // xLowerBound of AR plane
+    var yLowerBound = CGFloat()                 // yLowerBound of AR plane
+    var scene = PlaneScene(size: CGSize(width: 0, height: 0))   // scene
+    var planeCurrentCurves = SCNNode()          // old curves on the AR plane
+    var torusCurrentCurves = SCNNode()          // old curves on the AR shape
+    var multipleCurve = false                   // whether creating or updating
     
     
-    
+    // set up
     override func viewDidLoad() {
         self.title = "2DView"
         scene = PlaneScene(size: view.frame.size)
@@ -40,12 +40,8 @@ class TwoDViewController: UIViewController, SKViewDelegate {
         // Do any additional setup after loading the view.
     }
 
-    @IBAction func displayPlane(_ sender: UIButton) {
-        
-        
-    }
     
-    
+    // touch screen
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         guard let touch = touches.first else {return}
         let location = touch.location(in: scene)
@@ -58,6 +54,7 @@ class TwoDViewController: UIViewController, SKViewDelegate {
         // Dispose of any resources that can be recreated.
     }
     
+    // navigate to AR 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "switchToAR" {
             if let ARView = segue.destination as? ViewController {

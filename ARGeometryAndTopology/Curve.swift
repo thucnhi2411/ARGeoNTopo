@@ -13,14 +13,16 @@ import ARKit
 class Curve: NSObject {
 
 
-    var s: ARSCNView
-    var points: [SCNNode]=[]
-    var r: CGFloat
-    var edgePoints: [SCNNode: SCNNode] = [:]
-    var height = CGFloat()
-    var width = CGFloat()
-    var xLowerBound = CGFloat()
-    var yLowerBound = CGFloat()
+    var s: ARSCNView                        // scene
+    var points: [SCNNode]=[]                // array of curve points
+    var r: CGFloat                          // radius
+    var edgePoints: [SCNNode: SCNNode] = [:]    // edge points dict
+    var height = CGFloat()                  // height of the plane
+    var width = CGFloat()                   // width of the plane
+    var xLowerBound = CGFloat()             // xLowerBound of plane
+    var yLowerBound = CGFloat()             // yLowerBound of plane
+    
+    // direction same as Plane Display class
     var horizontally = false
     var vertically = false
     var h_left = false
@@ -28,24 +30,13 @@ class Curve: NSObject {
     var v_top = false
     var v_bottom = false
     
+    // initialize
     init(scene: ARSCNView, radius: CGFloat){
         s = scene
         r = radius
     }
     
-    
-    func createBall(hitPosition : SCNVector3) {
-        let point0 = SCNNode()
-        point0.position = hitPosition
-        point0.geometry = SCNSphere(radius: 0.05)
-        point0.geometry?.firstMaterial?.diffuse.contents = UIColor.blue
-        points.append(point0)
-        s.scene.rootNode.addChildNode(point0)
-    }
-    
 
-
-    
     // point 0,2,4,...
     func manipulateEven(){
         for i in 0...(points.count-2) {
@@ -87,6 +78,7 @@ class Curve: NSObject {
    
     }
     
+    // handling normal nodes
     func updateCurve(p1: SCNNode, p2: SCNNode, p3: SCNNode){
         let nodeA = p1.position
         let nodeB = p2.position
@@ -111,6 +103,7 @@ class Curve: NSObject {
         }
     }
     
+    // when handling the edges node
     func updateException(p1: SCNNode, p2: SCNNode, p3: SCNNode, p4: SCNNode){
         let nodeA = p1.position
         let nodeC = p3.position
@@ -170,6 +163,7 @@ class Curve: NSObject {
         }
     }
     
+    // reset name of all nodes
     func resetName(){
         for i in 0...points.count-1{
             points[i].name = nil
@@ -206,6 +200,7 @@ class Curve: NSObject {
         return newLoc
     }
     
+    // calculating distance between two points
     func dist(loc1: SCNVector3, loc2: SCNVector3)->CGFloat{
         let x = pow(loc2.x-loc1.x,2)
         let y = pow(loc2.y-loc1.y,2)
@@ -213,6 +208,7 @@ class Curve: NSObject {
         return CGFloat(sqrt(x+y+z))
     }
 
+    // remove all points
     func removeAllElements(){
         points.removeAll()
     }

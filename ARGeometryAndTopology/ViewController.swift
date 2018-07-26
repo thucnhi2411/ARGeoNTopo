@@ -89,7 +89,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     var planeCurrentCurves = SCNNode()
     var torusCurrentCurves = SCNNode()
     
-
+    // Update curves on the screen
     @IBAction func addTorus(_ sender: Any) {
         print(multipleCurve)
         if (multipleCurve == false){
@@ -104,6 +104,8 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         }
         
     }
+    
+    // Add new curve but still keeps old one displayed
     @IBAction func updateCurve(_ sender: UIButton) {
         let planeMaterial = SCNMaterial()
         planeMaterial.diffuse.contents = UIColor.gray
@@ -119,17 +121,19 @@ class ViewController: UIViewController, ARSCNViewDelegate {
 
     }
     
+    // Remove all
     @IBAction func removeTorus(_ sender: UIButton) {
         while (!self.sceneView.scene.rootNode.childNodes.isEmpty){
             self.sceneView.scene.rootNode.childNodes[0].removeFromParentNode()
         }
     }
     
+    // change view
     @IBAction func changeView(_ sender: UIButton) {
         //performSegue(withIdentifier: "Switch", sender: UIButton())
     }
 
-    
+    // change color of old curves
     func recolor(node: SCNNode){
         let arr = node.childNodes
         for i in 0...arr.count-1 {
@@ -137,24 +141,13 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         }
     }
     
+    // shortening process (step by step_
     @IBAction func shortenCurve(_ sender: UIButton) {
         torus.shorten()
 
     }
-//
-//    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-//        guard let touch = touches.first else {return}
-//        let results = sceneView.hitTest(touch.location(in: sceneView), types: [ARHitTestResult.ResultType.featurePoint])
-//        guard let hitFeature = results.first else { return }
-//        let hitTransform = SCNMatrix4.init(hitFeature.worldTransform) // <- if higher than beta 1, use just this -> hitFeature.worldTransform
-//        let hitPosition = SCNVector3Make(hitTransform.m41,
-//                                         hitTransform.m42,
-//                                         hitTransform.m43)
-//        torus.touchForPoints(pos: hitPosition)
-//        print("Touched")
-//    }
-    
 
+    // navigate to 2D view
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "switchTo2D" {
             if let twoDView = segue.destination as? TwoDViewController {
