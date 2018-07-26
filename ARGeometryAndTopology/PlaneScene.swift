@@ -45,8 +45,8 @@ class PlaneScene: SKScene {
     func addPoint(location: CGPoint){
         let point = SKShapeNode(rectOf: CGSize(width: widthPlane/20, height: heightPlane/20))
         point.position = location
-        if (point.position.x > frame.midX-widthPlane && point.position.x < frame.midX + widthPlane
-            && point.position.y > frame.midY-heightPlane && point.position.y < frame.midY + heightPlane) {
+        if (point.position.x > frame.midX-widthPlane/2 && point.position.x < frame.midX + widthPlane/2
+            && point.position.y > frame.midY-heightPlane/2 && point.position.y < frame.midY + heightPlane/2) {
             point.zPosition = 0
             point.fillColor = UIColor.black
             self.addChild(point)

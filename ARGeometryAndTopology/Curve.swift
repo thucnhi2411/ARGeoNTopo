@@ -23,6 +23,10 @@ class Curve: NSObject {
     var yLowerBound = CGFloat()
     var horizontally = false
     var vertically = false
+    var h_left = false
+    var h_right = false
+    var v_top = false
+    var v_bottom = false
     
     init(scene: ARSCNView, radius: CGFloat){
         s = scene
@@ -113,10 +117,22 @@ class Curve: NSObject {
         let nodeD = p4.position
         let temp = SCNNode()
         if (horizontally){
-            temp.position = SCNVector3(CGFloat(nodeA.x)-width,CGFloat(nodeA.y), CGFloat(nodeA.z))
+            if (h_left){
+                temp.position = SCNVector3(CGFloat(nodeA.x)-width,CGFloat(nodeA.y), CGFloat(nodeA.z))
+            }
+            if (h_right){
+                temp.position = SCNVector3(CGFloat(nodeA.x)+width,CGFloat(nodeA.y), CGFloat(nodeA.z))
+            }
+            
         }
         if (vertically){
-            temp.position = SCNVector3(CGFloat(nodeA.x),CGFloat(nodeA.y)-height, CGFloat(nodeA.z))
+            if (v_bottom){
+                temp.position = SCNVector3(CGFloat(nodeA.x),CGFloat(nodeA.y)-height, CGFloat(nodeA.z))
+            }
+            if (v_top){
+                temp.position = SCNVector3(CGFloat(nodeA.x),CGFloat(nodeA.y)+height, CGFloat(nodeA.z))
+            }
+            
         }
         if (dist(loc1: temp.position,loc2: nodeD) <
             dist(loc1: temp.position,loc2: nodeC)+dist(loc1: nodeC, loc2: nodeD)) {
@@ -127,16 +143,26 @@ class Curve: NSObject {
                 if (newPos.x != Float(xLowerBound)){
                     points.remove(at: points.count-1)
                 } else {
-                    p2.position = SCNVector3(CGFloat(nodeC.x)+width, CGFloat(newPos.y), CGFloat(newPos.z))
+                    if (h_left){
+                        p2.position = SCNVector3(CGFloat(nodeC.x)+width, CGFloat(newPos.y), CGFloat(newPos.z))
+                    }
+                    if (h_right){
+                        p2.position = SCNVector3(CGFloat(nodeC.x)-width, CGFloat(newPos.y), CGFloat(newPos.z))
+                    }
+                    
                 }
             }
             if (vertically){
                 if (newPos.y != Float(yLowerBound)){
                     points.remove(at: points.count-1)
-                    print("remove")
                 } else {
-                    print("change pos")
-                    p2.position = SCNVector3(CGFloat(newPos.x), CGFloat(nodeC.y)+height, CGFloat(newPos.z))
+                    if (v_bottom){
+                        p2.position = SCNVector3(CGFloat(newPos.x), CGFloat(nodeC.y)+height, CGFloat(newPos.z))
+                    }
+                    if (v_top){
+                        p2.position = SCNVector3(CGFloat(newPos.x), CGFloat(nodeC.y)-height, CGFloat(newPos.z))
+                    }
+                    
                 }
             }
             

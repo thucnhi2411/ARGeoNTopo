@@ -38,8 +38,13 @@ class PlaneDisplay: NSObject {
     var odd = false                      // control odd/even manipulation
     
     // edges
-    var horizontally = true
-    var vertically = false
+    var horizontally = false
+    var h_left = false        // horizontal starting from the left
+    var h_right = false
+    var vertically = true
+    var v_bottom = false        // vertical starting from the bottom
+    var v_top = true
+    
     var leftNode = SCNNode()            // left edge node
     var rightNode = SCNNode()           // right edge node
     var left = false                    // whether leftNode existed
@@ -74,7 +79,10 @@ class PlaneDisplay: NSObject {
         curve.yLowerBound = yLowerBound
         curve.vertically = vertically
         curve.horizontally = horizontally
-        
+        curve.h_left = h_left
+        curve.h_right = h_right
+        curve.v_top = v_top
+        curve.v_bottom = v_bottom
     }
     
     func initPlane(){
@@ -96,6 +104,7 @@ class PlaneDisplay: NSObject {
             curve.points = curvePoints
             curve.edgePoints = edgePoints
         }
+        print(curvePoints)
         
     }
     
@@ -212,6 +221,7 @@ class PlaneDisplay: NSObject {
         addToScreen()
     }
     
+    // mark the left/right/top/bottom most points
     func checkEdge(node: SCNNode, index: Int){
         
         if (horizontally){
@@ -235,10 +245,10 @@ class PlaneDisplay: NSObject {
         
         if (vertically){
             
-            if (node.position.y < curvePoints[topMost].position.y){
+            if (node.position.y < curvePoints[bottomMost].position.y){
                 bottomMost = index
             }
-            if (node.position.y > curvePoints[bottomMost].position.y){
+            if (node.position.y > curvePoints[topMost].position.y){
                 topMost = index
             }
             if (node.position.y == Float(yLowerBound) || CGFloat(node.position.y) == yLowerBound){
@@ -259,39 +269,82 @@ class PlaneDisplay: NSObject {
         if (horizontally){
             if (!left && right){
                 print("No left + existing right")
-                curvePoints.insert(addExtraPoint(original_p: rightNode), at: leftMost)
-                rightMost = rightMost + 1
+                if (h_left){
+                    curvePoints.insert(addExtraPoint(original_p: rightNode), at: leftMost)
+                    rightMost = rightMost + 1
+                }
+                if (h_right){
+                    curvePoints.insert(addExtraPoint(original_p: rightNode), at: leftMost+1)
+                    leftMost = leftMost + 1
+                }
             } else if (left && !right){
                 print("Existing left + no right")
-                curvePoints.insert(addExtraPoint(original_p: leftNode), at: rightMost+1)
-                rightMost = rightMost + 1
+                if (h_left){
+                    curvePoints.insert(addExtraPoint(original_p: leftNode), at: rightMost+1)
+                    rightMost = rightMost + 1
+                }
+                if (h_right){
+                    curvePoints.insert(addExtraPoint(original_p: leftNode), at: rightMost)
+                    leftMost = leftMost + 1
+                }
+                
             } else if (!left && !right){
                 print("No left + no right")
-                curvePoints.insert(addAdditionalEdgeNode()[0], at: leftMost)
-                curvePoints.insert(addAdditionalEdgeNode()[1], at: rightMost+2)
-                rightMost = rightMost+2
+                if (h_left){
+                    curvePoints.insert(addAdditionalEdgeNode()[0], at: leftMost)
+                    curvePoints.insert(addAdditionalEdgeNode()[1], at: rightMost+2)
+                    rightMost = rightMost+2
+                }
+                if (h_right){
+                    curvePoints.insert(addAdditionalEdgeNode()[1], at: rightMost)
+                    curvePoints.insert(addAdditionalEdgeNode()[0], at: leftMost+2)
+                    leftMost = leftMost+2
+                }
+                
             }
         }
         if (vertically){
             if (!top && bottom){
                 print("No top + existing bottom")
-                curvePoints.insert(addExtraPoint(original_p: bottomNode), at: topMost+1)
-                topMost = topMost + 1
+                if (v_bottom){
+                    curvePoints.insert(addExtraPoint(original_p: bottomNode), at: topMost+1)
+                    topMost = topMost + 1
+                }
+                if (v_top){
+                    curvePoints.insert(addExtraPoint(original_p: bottomNode), at: topMost)
+                    bottomMost = bottomMost + 1
+                }
+                
             } else if (top && !bottom){
                 print("Existing top + no bottom")
-                curvePoints.insert(addExtraPoint(original_p: topNode), at: bottomMost)
-                topMost = topMost + 1
+                if (v_bottom){
+                    curvePoints.insert(addExtraPoint(original_p: topNode), at: bottomMost)
+                    topMost = topMost + 1
+                }
+                if (v_top){
+                    curvePoints.insert(addExtraPoint(original_p: topNode), at: bottomMost+1)
+                    bottomMost = bottomMost + 1
+                }
+                
             } else if (!top && !bottom){
                 print("No top + no bottom")
-            
-                curvePoints.insert(addAdditionalEdgeNode()[0], at: bottomMost)
-                curvePoints.insert(addAdditionalEdgeNode()[1], at: topMost+2)
-                topMost = topMost+2
+                if (v_bottom){
+                    curvePoints.insert(addAdditionalEdgeNode()[0], at: bottomMost)
+                    curvePoints.insert(addAdditionalEdgeNode()[1], at: topMost+2)
+                    topMost = topMost+2
+                }
+                if (v_top){
+                    curvePoints.insert(addAdditionalEdgeNode()[1], at: topMost)
+                    curvePoints.insert(addAdditionalEdgeNode()[0], at: bottomMost+2)
+                    bottomMost = bottomMost+2
+                }
+                
             }
         }
 
     }
     
+    // lack of nodes on both edges
     func addAdditionalEdgeNode()->[SCNNode]{
         let right = SCNNode() // or bottom
         let temp = SCNNode()
@@ -446,14 +499,18 @@ class PlaneDisplay: NSObject {
         // add line to scene
         for j in 0...(curvePoints.count-1) {
             if (j != curvePoints.count-1){
-                if (curvePoints[j].name != "rightSide" && curvePoints[j+1].name != "leftSide"
-                && curvePoints[j].name != "topSide" && curvePoints[j+1].name != "bottomSide"){
+                if ((curvePoints[j].name != "rightSide" && curvePoints[j+1].name != "leftSide"
+                && curvePoints[j].name != "topSide" && curvePoints[j+1].name != "bottomSide" && (h_left || v_bottom))
+                || (curvePoints[j+1].name != "rightSide" && curvePoints[j].name != "leftSide"
+                && curvePoints[j+1].name != "topSide" && curvePoints[j].name != "bottomSide" && (h_right || v_top))){
                     let linenode = SCNNode.createLineNode(fromNode: curvePoints[j], toNode: curvePoints[j+1], color: UIColor.black)
                     line.addChildNode(linenode)
                 }
             } else {
-                if (curvePoints[j].name != "rightSide" && curvePoints[0].name != "leftSide"
-                    && curvePoints[j].name != "topSide" && curvePoints[0].name != "bottomSide"){
+                if ((curvePoints[j].name != "rightSide" && curvePoints[0].name != "leftSide"
+                    && curvePoints[j].name != "topSide" && curvePoints[0].name != "bottomSide" && (h_left || v_bottom))
+                    || (curvePoints[0].name != "rightSide" && curvePoints[j].name != "leftSide"
+                    && curvePoints[0].name != "topSide" && curvePoints[j].name != "bottomSide" && (h_right || v_top))){
                     let linenode = SCNNode.createLineNode(fromNode: curvePoints[j], toNode: curvePoints[0], color: UIColor.black)
                     line.addChildNode(linenode)
                    
