@@ -91,7 +91,6 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     
     // Update curves on the screen
     @IBAction func addTorus(_ sender: Any) {
-        print(multipleCurve)
         if (multipleCurve == false){
             torus.plane.curvePoints = points
             torus.add()
@@ -121,18 +120,20 @@ class ViewController: UIViewController, ARSCNViewDelegate {
 
     }
     
-    // Remove all
-    @IBAction func removeTorus(_ sender: UIButton) {
-        while (!self.sceneView.scene.rootNode.childNodes.isEmpty){
-            self.sceneView.scene.rootNode.childNodes[0].removeFromParentNode()
-        }
-    }
+
     
     // change view
     @IBAction func changeView(_ sender: UIButton) {
         //performSegue(withIdentifier: "Switch", sender: UIButton())
     }
 
+    @IBAction func removeElement(_ sender: UIButton) {
+        while (!self.sceneView.scene.rootNode.childNodes.isEmpty){
+            self.sceneView.scene.rootNode.childNodes[0].removeFromParentNode()
+        }
+        torus.initShape()
+        
+    }
     // change color of old curves
     func recolor(node: SCNNode){
         let arr = node.childNodes

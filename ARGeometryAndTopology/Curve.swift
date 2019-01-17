@@ -39,42 +39,45 @@ class Curve: NSObject {
 
     // point 0,2,4,...
     func manipulateEven(){
-        for i in 0...(points.count-2) {
-            if (i%2 == 0){
-                print(i)
-                if (i < points.count-2){
-                    print("normal")
-                    updateCurve(p1: points[i], p2: points[i+1], p3: points[i+2])
-                    
-                } else {
-                    print("exception")
-                    updateException(p1: points[i], p2: points[i+1], p3: points[0], p4: points[1])
-                    
-                    
+        if (points.count-2 > 0){
+            for i in 0...(points.count-2) {
+                if (i%2 == 0){
+                    print(i)
+                    if (i < points.count-2){
+                        print("normal")
+                        updateCurve(p1: points[i], p2: points[i+1], p3: points[i+2])
+                        
+                    } else {
+                        print("exception")
+                        updateException(p1: points[i], p2: points[i+1], p3: points[0], p4: points[1])
+                        
+                        
+                    }
                 }
+                resetName()
             }
-            resetName()
         }
 
     }
 
     // point 1,3,5,...
     func manipulateOdd(){
-        for i in 1...(points.count-2) {
-            if (i%2 != 0){
-                print(i)
-                if (i < points.count-2){
-                    print("normal")
-                    updateCurve(p1: points[i], p2: points[i+1], p3: points[i+2])
-                } else {
-                    print("exception")
-                    updateException(p1: points[i], p2: points[i+1], p3: points[0], p4: points[1])
-                    
-                    
+        if (points.count-2 > 0){
+            for i in 1...(points.count-2) {
+                if (i%2 != 0){
+                    print(i)
+                    if (i < points.count-2){
+                        print("normal")
+                        updateCurve(p1: points[i], p2: points[i+1], p3: points[i+2])
+                    } else {
+                        print("exception")
+                        updateException(p1: points[i], p2: points[i+1], p3: points[0], p4: points[1])
+                    }
                 }
+                resetName()
             }
-            resetName()
         }
+
    
     }
     

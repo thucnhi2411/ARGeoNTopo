@@ -39,13 +39,15 @@ class PlaneScene: SKScene {
     func displayScene(){
         plane.position = CGPoint(x: frame.midX, y: frame.midY)
         plane.zPosition = 0
-        plane.fillColor = UIColor.blue
+        plane.strokeColor = UIColor.blue
+        plane.lineWidth = 0.5
         self.addChild(plane)
     }
     
     // Create point at the position touched
     func addPoint(location: CGPoint){
-        let point = SKShapeNode(rectOf: CGSize(width: widthPlane/20, height: heightPlane/20))
+        let point = SKShapeNode(circleOfRadius: widthPlane/50)
+        point.fillColor = UIColor.blue
         point.position = location
         if (point.position.x > frame.midX-widthPlane/2 && point.position.x < frame.midX + widthPlane/2
             && point.position.y > frame.midY-heightPlane/2 && point.position.y < frame.midY + heightPlane/2) {

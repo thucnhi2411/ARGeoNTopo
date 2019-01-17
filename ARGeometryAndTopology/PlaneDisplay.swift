@@ -38,12 +38,12 @@ class PlaneDisplay: NSObject {
     var odd = false                     // control odd/even manipulation
     
     // curve direction, for now just one direction enabled
-    var horizontally = false            // horizontal
-    var h_left = false                  // horizontal starting from the left
+    var horizontally = true            // horizontal
+    var h_left = true                  // horizontal starting from the left
     var h_right = false                 // horizontal starting from the right
-    var vertically = true               // vertical
+    var vertically = false               // vertical
     var v_bottom = false                // vertical starting from the bottom
-    var v_top = true                    // vertical starting from the top
+    var v_top = false                    // vertical starting from the top
     
     // edges
     var leftNode = SCNNode()            // left edge node
@@ -122,8 +122,6 @@ class PlaneDisplay: NSObject {
                 let node = SCNNode()
                 let x = xLowerBound + CGFloat(n)*width/CGFloat(pieces)
                 let y = yLowerBound + CGFloat(m)*height/CGFloat(pieces)
-                node.geometry = SCNSphere(radius: 0.001)
-                node.geometry?.firstMaterial?.diffuse.contents = UIColor.yellow
                 node.position = SCNVector3(x,y,0)
                 node.opacity = 0.5
                 planePoints[m][n] = node

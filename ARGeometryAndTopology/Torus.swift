@@ -79,7 +79,7 @@ class Torus: NSObject {
                 let v = positionToAngle(x: CGFloat(node.position.x), y: CGFloat(node.position.y))[1]
                 node.geometry = SCNSphere(radius: 0.001)
                 node.geometry?.firstMaterial?.diffuse.contents = UIColor.white
-                node.position = mapToKleinBottle(torusA: u, tubeA: v)
+                node.position = mapToTorus(torusA: u, tubeA: v)
                 node.opacity = 0.5
                 shapePoints[m-1][n-1] = node
                 j = j+2
@@ -177,7 +177,7 @@ class Torus: NSObject {
             if (node.name != "rightSide" && node.name != "bottomSide"){
                 let x = CGFloat(node.position.x)
                 let y = CGFloat(node.position.y)
-                p1.position = (mapToKleinBottle(torusA: positionToAngle(x: x, y: y )[0], tubeA: positionToAngle(x: x, y: y)[1]))
+                p1.position = (mapToTorus(torusA: positionToAngle(x: x, y: y )[0], tubeA: positionToAngle(x: x, y: y)[1]))
                 curvePoints3D.append(p1)
                 p1.geometry = SCNSphere(radius: 0.0005)
                 p1.geometry?.firstMaterial?.diffuse.contents = UIColor.blue
